@@ -1,0 +1,24 @@
+from selenium.webdriver.common.by import By
+
+class StartingPageLocators(object):
+    SIGN_UP_BY_PHONE_OR_EMAIL = (By.LINK_TEXT,"Sign up with phone or email")
+    SIGN_IN = (By.LINK_TEXT,"Sign in")
+    SIGN_IN_WITH_APPLE = (By.XPATH,"/html/body/div/div/div/div[2]/main/div/div/div[1]/div[1]/div/div[3]/div[2]")
+    SIGN_IN_WITH_GOOGLE = (By.XPATH,"/html/body/div/div/div/div[2]/main/div/div/div[1]/div[1]/div/div[3]/div[1]")
+    
+    
+class SignInLocators(object):
+    INSERT_UR_INFO = "text"
+    NEXT_BUTTON = (By.XPATH,"//span[contains(text(),'Next')]")
+    
+    
+class SignUpLocators(object):
+    NEXT_BUTTON = (By.XPATH,"//div[@class='css-1dbjc4n r-kemksi r-1p0dtai r-1d2f490 r-1xcajam r-zchlnj']//span[@class='css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0'][normalize-space()='Next']")
+    NAME_TEXTBOX =   "name"
+    PHONE_TEXTBOX = "phone_number"  #NAME //div[@class='css-1dbjc4n r-1n7yuxj']//div[1]//label[1]//div[1]//div[2]
+    MONTH         = "r-30o5oe r-1niwhzg r-17gur6a r-1yadl64 r-1nao33i r-1loqt21 r-37j5jr r-1inkyih r-rjixqe r-crgep1 r-1wzrnnt r-1ny4l3l r-t60dpp r-xd6kpl r-1pn2ns4 r-ttdzmv"
+    YEAR            = "SELECTOR_15"
+    ERROR_MSG       = "//span[normalize-space()='Please enter a valid phone number.']" #XPATH
+    EXPECTED_MSG    = "Please enter a valid phone number."
+    
+   
