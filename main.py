@@ -30,6 +30,12 @@ class PythonOrgSearch(unittest.TestCase):
     def test_case_sign_up(self):
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
+        SignUp_page.insert_ur_name(SignUpLocators.WRONG_NAMEX50)
+        if(SignUp_page.cheack_ur_name_size()):
+            assert True
+        else:
+            # if it accept more than 50 letter as ur name
+            assert False        
         SignUp_page.insert_ur_phone("WRONGMSG")
         actualmsg=SignUp_page.check_wrong_msg()
         if actualmsg==SignUpLocators.EXPECTED_MSG:

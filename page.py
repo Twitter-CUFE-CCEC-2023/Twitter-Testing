@@ -54,7 +54,16 @@ class SignUpPage(BasePage):
                     )
         msg=element.text
         return msg
-        
+    def cheack_ur_name_size(self):
+            element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.NAME,SignUpLocators.NAME_TEXTBOX))
+                    )
+            check=0
+            check=len(element.get_attribute("value"))
+            if check>50:
+                return False
+            else:
+                 return  True   
     def choose_day_month_year(self):
         ''''
         element = WebDriverWait(self.driver, 10).until(

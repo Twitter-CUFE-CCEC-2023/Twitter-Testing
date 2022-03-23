@@ -20,5 +20,5 @@ class SignUpLocators(object):
     YEAR            = "SELECTOR_15"
     ERROR_MSG       = "//span[normalize-space()='Please enter a valid phone number.']" #XPATH
     EXPECTED_MSG    = "Please enter a valid phone number."
-    
+    WRONG_NAMEX50   ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
    
