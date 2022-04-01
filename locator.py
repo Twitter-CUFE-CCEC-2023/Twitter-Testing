@@ -4,7 +4,7 @@ class StartingPageLocators(object):
     SIGN_UP_BY_PHONE_OR_EMAIL = (By.LINK_TEXT,"Sign up with phone or email")
     SIGN_IN = (By.LINK_TEXT,"Sign in")
     SIGN_IN_WITH_APPLE = (By.XPATH,"/html/body/div/div/div/div[2]/main/div/div/div[1]/div[1]/div/div[3]/div[2]")
-    SIGN_IN_WITH_GOOGLE = (By.XPATH,"/html/body/div/div/div/div[2]/main/div/div/div[1]/div[1]/div/div[3]/div[1]")
+    SIGN_IN_WITH_GOOGLE = (By.XPATH,"/html/body/div/div/div[2]")
     
     
 class SignInLocators(object):

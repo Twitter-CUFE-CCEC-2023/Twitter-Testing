@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-PATH = "C:/Users/Lucio/AppData/Local/Programs/Python/Python310/chromedriver.exe"
+PATH = "C:/Users/Lucio/AppData/Local/Programs/Python/Python310/chromedriver_win32/chromedriver.exe"
 
 
 class PythonOrgSearch(unittest.TestCase):
@@ -26,7 +26,7 @@ class PythonOrgSearch(unittest.TestCase):
         Login_page.click_Next_button()
         assert True
         # i cant detect the message bec its pop msg and disapper and selenium cant deal with it
-      
+    
     def test_case_sign_up(self):
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
@@ -45,8 +45,14 @@ class PythonOrgSearch(unittest.TestCase):
         SignUp_page.insert_ur_name("ali hithem")      
         SignUp_page.insert_ur_phone("01001900361")
         SignUp_page.choose_day_month_year()
-        time.sleep(100)
-
+        time.sleep(10)
+    
+    def test_case_signIn_byGoogle(self):
+        Signin_page=page.loginbyGoogle(self.driver)
+        Signin_page.click_sign_in_with_Gmail()
+        time.sleep(10)
+        
+        
         
               
     

@@ -75,4 +75,10 @@ class SignUpPage(BasePage):
         print("hallo")    
         
               
-  
+class loginbyGoogle(BasePage):
+     def click_sign_in_with_Gmail(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,StartingPageLocators.SIGN_IN_WITH_GOOGLE))
+                    )
+        element.click()
+        
