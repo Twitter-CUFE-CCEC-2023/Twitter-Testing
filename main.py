@@ -18,12 +18,15 @@ class PythonOrgSearch(unittest.TestCase):
         self.driver.get("https://twitter.com/")
         
 
-    
+    ''' 
     def test_case_log_in(self):
         Login_page = page.LoginPage(self.driver)
         Login_page.click_sign_in_button()
         Login_page.insert_your_info("01001900361")
         Login_page.click_Next_button()
+        Login_page.cheack_ur_error_msg()
+        
+        time.sleep(1000)
         assert True
         # i cant detect the message bec its pop msg and disapper and selenium cant deal with it
     
@@ -35,7 +38,9 @@ class PythonOrgSearch(unittest.TestCase):
             assert True
         else:
             # if it accept more than 50 letter as ur name
-            assert False        
+            assert False    
+        
+        print(SignUp_page.click_NEXT())       
         SignUp_page.insert_ur_phone("WRONGMSG")
         actualmsg=SignUp_page.check_wrong_msg()
         if actualmsg==SignUpLocators.EXPECTED_MSG:
@@ -44,14 +49,17 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
         SignUp_page.insert_ur_name("ali hithem")      
         SignUp_page.insert_ur_phone("01001900361")
-        SignUp_page.choose_day_month_year()
-        time.sleep(10)
-    
+       # SignUp_page.choose_day_month_year()
+        time.sleep(15)
+        SignUp_page.click_NEXT()
+        
+        
+    '''
     def test_case_signIn_byGoogle(self):
         Signin_page=page.loginbyGoogle(self.driver)
         Signin_page.click_sign_in_with_Gmail()
-        time.sleep(10)
-        
+        time.sleep(1000)
+       
         
         
               
