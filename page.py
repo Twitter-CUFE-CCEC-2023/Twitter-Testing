@@ -121,4 +121,23 @@ class loginbyGoogle(BasePage):
         EC.presence_of_element_located((By.XPATH,StartingPageLocators.SIGN_IN_WITH_APPLE))
                     )
         element.click()
+
+class enteryourpassword(BasePage):
+    def enter_your_password(self,paswword:str):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.NAME,Passwordlocarors.PASSWORD_TEXTBOX))
+                    )
+        element.clear()
+        element.send_keys(paswword)
         
+    def is_login_enable(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,Passwordlocarors.LOGIN_BUTTON))
+                    )
+        element.click()
+        
+    def forget_password(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,Passwordlocarors.FORGET_PASSWORD))
+                    )
+        return element.text           
