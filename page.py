@@ -3,6 +3,7 @@ from lib2to3.pgen2 import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+#from selenium.webdriver_manger.chrome import ChromeDriverManger
 
 class BasePage(object):
     def __init__(self,driver):
@@ -30,15 +31,21 @@ class LoginPage(BasePage):
         
         
     def cheack_ur_error_msg(self):
+        
+       
+        
+        
+        '''
+         print(self.driver.switch_to.alert().text)
         try:
-            element = WebDriverWait(self.driver, 10).until(
+            element = WebDriverWait(self.driver.switch_to.alert, 10).until(
         EC.presence_of_element_located((By.XPATH,SignInLocators.ALERT_MSG))
                     )
             #element.click()
             print(element.get_attribute("value"))
         except:
             print("halooooo")    
-            
+        '''    
 class SignUpPage(BasePage):
     def click_sign_up(self):
         element = self.driver.find_element(*StartingPageLocators.SIGN_UP_BY_PHONE_OR_EMAIL)
@@ -100,7 +107,12 @@ class SignUpPage(BasePage):
             except:
                 return False
             '''       
-          
+    def is_NEXT_enable(self):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_CREATE_ACCOUNT))
+                    )
+        return element.is_enabled()
+        
         
               
 class loginbyGoogle(BasePage):
