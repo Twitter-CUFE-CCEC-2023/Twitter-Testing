@@ -3,6 +3,7 @@ from lib2to3.pgen2 import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+#from selenium.webdriver_manger.chrome import ChromeDriverManger
 
 class BasePage(object):
     def __init__(self,driver):
@@ -27,7 +28,24 @@ class LoginPage(BasePage):
                     )
         element.clear()
         element.send_keys(info) 
-    
+        
+        
+    def cheack_ur_error_msg(self):
+        
+       
+        
+        
+        '''
+         print(self.driver.switch_to.alert().text)
+        try:
+            element = WebDriverWait(self.driver.switch_to.alert, 10).until(
+        EC.presence_of_element_located((By.XPATH,SignInLocators.ALERT_MSG))
+                    )
+            #element.click()
+            print(element.get_attribute("value"))
+        except:
+            print("halooooo")    
+        '''    
 class SignUpPage(BasePage):
     def click_sign_up(self):
         element = self.driver.find_element(*StartingPageLocators.SIGN_UP_BY_PHONE_OR_EMAIL)
@@ -72,13 +90,54 @@ class SignUpPage(BasePage):
         '''
         vv = self.driver.find_element((By.CLASS_NAME,"r-30o5oe r-1niwhzg r-17gur6a r-1yadl64 r-1nao33i r-1loqt21 r-37j5jr r-1inkyih r-rjixqe r-crgep1 r-1wzrnnt r-1ny4l3l r-t60dpp r-xd6kpl r-1pn2ns4 r-ttdzmv"))
         vv.click()
-        print("hallo")    
+        print("hallo")  
+        
+    def click_NEXT(self):
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_CREATE_ACCOUNT))
+                    )
+            element.click() 
+            '''
+            try :
+                element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_PAGE_NEXT))
+                    )
+                element.click()
+                return True
+            except:
+                return False
+            '''       
+    def is_NEXT_enable(self):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_CREATE_ACCOUNT))
+                    )
+        return element.is_enabled()
+        
         
               
 class loginbyGoogle(BasePage):
      def click_sign_in_with_Gmail(self):
         element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.XPATH,StartingPageLocators.SIGN_IN_WITH_GOOGLE))
+        EC.presence_of_element_located((By.XPATH,StartingPageLocators.SIGN_IN_WITH_APPLE))
+                    )
+        element.click()
+
+class enteryourpassword(BasePage):
+    def enter_your_password(self,paswword:str):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.NAME,Passwordlocarors.PASSWORD_TEXTBOX))
+                    )
+        element.clear()
+        element.send_keys(paswword)
+        
+    def is_login_enable(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,Passwordlocarors.LOGIN_BUTTON))
                     )
         element.click()
         
+    def forget_password(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,Passwordlocarors.FORGET_PASSWORD))
+                    )
+        return element.text           
