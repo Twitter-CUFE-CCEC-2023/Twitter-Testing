@@ -134,10 +134,15 @@ class enteryourpassword(BasePage):
         element = WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located((By.XPATH,Passwordlocarors.LOGIN_BUTTON))
                     )
-        element.click()
-        
+        return(element.is_enabled())
+            
     def forget_password(self):
         element = WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located((By.XPATH,Passwordlocarors.FORGET_PASSWORD))
                     )
         return element.text           
+    def click_login(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,Passwordlocarors.LOGIN_BUTTON))
+                    )
+        element.click()

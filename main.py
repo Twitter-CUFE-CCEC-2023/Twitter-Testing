@@ -27,14 +27,22 @@ class PythonOrgSearch(unittest.TestCase):
         Login_page.insert_your_info("01001")
         Login_page.click_Next_button()
         #Login_page.cheack_ur_error_msg()
+        
+        if(not Password_page.is_login_enable()):
+            assert False
+        else:
+            assert True 
+            
         Password_page.enter_your_password("passWORD")
         
         if(Password_page.forget_password()==Passwordlocarors.FORGET_PASSWORD_TEXT):
             assert True
         else:
-            assert False     
+            assert False   
+              
+        Password_page.click_login()
+        assert True
         
-        #Password_page.is_login_enable()
        
         
         
