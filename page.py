@@ -64,38 +64,66 @@ class SignUpPage(BasePage):
             return False
         
     def insert_ur_name(self, name:str):
-        element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.XPATH,SignUpLocators.NAME_TEXTBOX))
-                    )
-        element.clear()
-        element.send_keys(name)
-    def check_email_text(self):
         try:
             element = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR,SignUpLocators.EMAIL_TEXT_LOC))
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.NAME_TEXTBOX))
+                    )
+            element.clear()
+            element.send_keys(name)
+        except:
+            return False   
+    def click_phone_link(self):
+            try:
+                element = WebDriverWait(self.driver, 10).until(
+                 EC.presence_of_element_located((By.XPATH,SignUpLocators.PHONE_LINK))
+                    )
+                element.click()      
+            except:
+                return False         
+    def check_phone_link(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.PHONE_LINK))
                     )
             msg=element.text  
-            print("her",msg)
+            #print("her",msg)
             return msg
         except:
             return False     
-    def insert_ur_phone(self, phone:str):
+    def insert_ur_phone(self, phone:str): 
         element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.NAME,SignUpLocators.PHONE_TEXTBOX))
+        EC.presence_of_element_located((By.XPATH,SignUpLocators.PHONE_TEXTBOX))
                     )
         element.clear()
         element.send_keys(phone)
-            
-    def check_wrong_msg(self):
+    def check_wrong_msg_email(self):
         try:
             element = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.XPATH,SignUpLocators.ERROR_MSG))
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.ERROR_MSG_EMAIL))
+                    )
+            msg=element.text
+            return msg
+        except:
+            return False        
+    def check_wrong_msg_phone(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.ERROR_MSG_PHONE))
                     )
             msg=element.text
             return msg
         except:
             return False
-    
+    def check_Email_link(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.EMAIL_LINK))
+                    )
+            msg=element.text
+            print(msg)  
+            return msg
+        except:
+            return False
         
     def cheack_ur_name_size(self):
             element = WebDriverWait(self.driver, 10).until(
@@ -107,7 +135,7 @@ class SignUpPage(BasePage):
                 return False
             else:
                  return  True   
-    def choose_day_month_year(self):
+    def choose_day_month_year(self,Month:str,Day:int,Year:int):
         ''''
         element = WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(  (By.CLASS_NAME,SignUpLocators.MONTH))
@@ -117,22 +145,25 @@ class SignUpPage(BasePage):
         vv = self.driver.find_element((By.CLASS_NAME,"r-30o5oe r-1niwhzg r-17gur6a r-1yadl64 r-1nao33i r-1loqt21 r-37j5jr r-1inkyih r-rjixqe r-crgep1 r-1wzrnnt r-1ny4l3l r-t60dpp r-xd6kpl r-1pn2ns4 r-ttdzmv"))
         vv.click()
         print("hallo")  
-        
+    def check_text_in_signup_page(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.TEXT_SIGNUP_LOC))
+                    )
+            msg=element.text
+            print(msg)
+            return msg
+        except:
+            return False
+             
     def click_NEXT(self):
+        try:
             element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_CREATE_ACCOUNT))
                     )
             element.click() 
-            '''
-            try :
-                element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_PAGE_NEXT))
-                    )
-                element.click()
-                return True
-            except:
-                return False
-            '''       
+        except:
+            return False    
     def is_NEXT_enable(self):
         element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_CREATE_ACCOUNT))

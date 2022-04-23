@@ -74,7 +74,7 @@ class PythonOrgSearch(unittest.TestCase):
             assert True       
     '''    
         #testing: that text box cant carry more than 50 letters
-    '''      
+    '''       
     def test_case_SIGNUP_textboxX50(self): 
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()   
@@ -84,40 +84,84 @@ class PythonOrgSearch(unittest.TestCase):
         else:
             # if it more than 50 letter as ur name
             assert False    
-    '''      
+    '''       
     '''      
         #testing  inserting a wrong email address text box
     def test_case_SIGNUP__wrong_email(self): 
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()       
         SignUp_page.insert_ur_email("1234")
-        actualmsg=SignUp_page.check_wrong_msg()
+        actualmsg=SignUp_page.check_wrong_msg_email()
         print(actualmsg)
         if actualmsg==SignUpLocators.EXPECTED_MSG_EMAIL:
             assert True
         else:
             assert False
-            
+     '''        
     '''
-    def test_case_SIGNUP_Email_text(self):
+    def test_case_SIGNUP_phone_link_text(self):
        SignUp_page=page.SignUpPage(self.driver)
        SignUp_page.click_sign_up()
-       print("hallloo",SignUp_page.check_email_text())  
-    '''    
-    def test_case_SIGNUP_phone_link(self): 
+       if SignUpLocators.PHONE_LINK_TEXT==SignUp_page.check_phone_link():
+            assert True
+       else:
+           assert False 
+    '''
+    '''       
+    def test_case_SIGNUP_wrong_phone_number(self):
         SignUp_page=page.SignUpPage(self.driver)
-        SignUp_page.click_sign_up()    n
-        # testing : creating account 
-          
-        SignUp_page.insert_ur_name("ali hithem")      
-        SignUp_page.insert_ur_phone("01001900361")
+        SignUp_page.click_sign_up()
+        SignUp_page.click_phone_link()
+        SignUp_page.insert_ur_phone(SignUpLocators.WRONG_NAMEX50)
+        if SignUpLocators.ERROR_MSG_EMAIL==SignUp_page.check_wrong_msg_email():
+            assert True
+        else:
+            assert False    
+    ''' 
+    '''    
+    def test_case_SIGNUP_next_enable_after_inserting_wrong_phone(self):
+        SignUp_page=page.SignUpPage(self.driver)
+        SignUp_page.click_sign_up()
+        SignUp_page.click_phone_link()
+        SignUp_page.insert_ur_phone(SignUpLocators.WRONG_NAMEX50)
+        SignUp_page.insert_ur_name("testing")
+        if(SignUp_page.is_NEXT_enable()):
+            assert False
+        else:
+            assert True 
+    '''
+    '''
+    def test_case_SIGNUP_cheack_email_link(self):
+        SignUp_page=page.SignUpPage(self.driver)
+        SignUp_page.click_sign_up()
+        SignUp_page.click_phone_link()
+        if SignUpLocators.EMAIL_LINK_TEXT==SignUp_page.check_Email_link():
+            assert True
+        else:
+            assert False    
+    '''     
+                  
+    '''    
+    def test_case_SIGNUP_choose_date(self): 
+        SignUp_page=page.SignUpPage(self.driver)
+        SignUp_page.click_sign_up()
+            
+    '''         
+        
+         
+    def test_case_SIGNUP_create_account(self): 
+        SignUp_page=page.SignUpPage(self.driver)
+        SignUp_page.click_sign_up()
+        #when i click on the link it clear my name      
+        SignUp_page.insert_ur_name("testing")
+        SignUp_page.click_phone_link()      
+        SignUp_page.insert_ur_phone("01001729999") 
        # SignUp_page.choose_day_month_year()
-        time.sleep(15)
         SignUp_page.click_NEXT()
         assert True
         
        
-    '''    
+       
     '''
     
     def test_case_signIn_byGoogle(self):

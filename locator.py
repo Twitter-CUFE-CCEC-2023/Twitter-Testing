@@ -15,8 +15,8 @@ class SignInLocators(object):
 class SignUpLocators(object):
     NEXT_BUTTON = (By.XPATH,"//div[@class='css-1dbjc4n r-kemksi r-1p0dtai r-1d2f490 r-1xcajam r-zchlnj']//span[@class='css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0'][normalize-space()='Next']")
     NAME_TEXTBOX =   "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]"
-    PHONE_TEXTBOX = "phone_number"  #NAME //div[@class='css-1dbjc4n r-1n7yuxj']//div[1]//label[1]//div[1]//div[2]
-    MONTH         = "r-30o5oe r-1niwhzg r-17gur6a r-1yadl64 r-1nao33i r-1loqt21 r-37j5jr r-1inkyih r-rjixqe r-crgep1 r-1wzrnnt r-1ny4l3l r-t60dpp r-xd6kpl r-1pn2ns4 r-ttdzmv"
+    PHONE_TEXTBOX = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[2]"  #NAME //div[@class='css-1dbjc4n r-1n7yuxj']//div[1]//label[1]//div[1]//div[2]
+    MONTH         = "grouped-native-select"
     YEAR            = "SELECTOR_15"
     ERROR_MSG       = "//span[normalize-space()='Please enter a valid phone number.']" #XPATH
     EXPECTED_MSG    = "Please enter a valid phone number."
@@ -26,8 +26,15 @@ class SignUpLocators(object):
     EMAIL_TEXTBOX ="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[2]"
     EXPECTED_MSG_EMAIL="Please enter a valid email."
     EMAIL_TEXT="Email"
-    EMAIL_TEXT_LOC='Div[id="placeholder"]'
-    
+    EMAIL_TEXT_LOC='div[pseudo="-webkit-input-placeholder"]'
+    PHONE_LINK="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/div[1]/p[1]"
+    PHONE_LINK_TEXT="Use phone instead"
+    ERROR_MSG_PHONE="" #LOCATIONS
+    ERROR_MSG_EMAIL=""
+    EMAIL_LINK="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/div[1]/p[1]"
+    EMAIL_LINK_TEXT="Use email instead"
+    TEXT_SIGNUP_LOC="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+    NEXT_CREATE_ACCOUNT_CLICK="Next"
 class Passwordlocarors(object):
     PASSWORD_TEXTBOX= "password"  #NAME
     FORGET_PASSWORD = "//span[contains(text(),'Forgot password?')]" #XPATH
