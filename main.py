@@ -1,4 +1,5 @@
 from faulthandler import is_enabled
+from lib2to3.pgen2 import driver
 import unittest
 from selenium import webdriver
 import page
@@ -9,8 +10,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-PATH = "C:/Users/Lucio/AppData/Local/Programs/Python/Python310/chromedriver_win32/chromedriver.exe"
 
+PATH = "C:/Users/Lucio/AppData/Local/Programs/Python/Python310/chromedriver_win32/chromedriver.exe"
+testcases=0
+passed=0
+falied=0
 
 class PythonOrgSearch(unittest.TestCase):
     
@@ -148,7 +152,7 @@ class PythonOrgSearch(unittest.TestCase):
             
     '''         
         
-         
+    '''    
     def test_case_SIGNUP_create_account(self): 
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
@@ -159,11 +163,88 @@ class PythonOrgSearch(unittest.TestCase):
        # SignUp_page.choose_day_month_year()
         SignUp_page.click_NEXT()
         assert True
-        
-       
-       
+    '''    
+    '''   
+    def test_case_SIGNIN_click_the_button(self):
+        Signin_page=page.SignInPage(self.driver)
+        if Signin_page.click_sign_in_button():
+            assert True
+        else:
+            assert False    
     '''
-    
+    '''
+    def test_case_SIGNIN_check_error_msg(self):
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()
+        time.sleep(5)
+        Signin_page.click_Next_button()
+        if Signin_page.check_alert_msg()==SignInLocators.ALERT_MSG_TEXT:
+            assert True
+        else:
+            assert False    
+    ''' 
+    '''    
+    def test_case_SIGNIN_login_enable(self):
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()
+        Signin_page.insert_your_info("testing")
+        Signin_page.click_Next_button()
+        time.sleep(2)
+        if (not Signin_page.is_login_button_enable()):
+            assert False
+        else:
+            assert True    
+    '''
+    '''
+    def test_case_SIGNIN_check_wrong_pass(self):
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()
+        Signin_page.insert_your_info("testing")
+        Signin_page.click_Next_button()
+        Signin_page.insert_your_password("wrong password")
+        time.sleep(2)
+        Signin_page.click_login()
+        if Signin_page.check_error_msg_of_wrong_password()==SignInLocators.WRONG_PASSWORD_TEXT:
+            assert True
+        else:
+            assert False    
+    '''
+    '''
+    def test_case_SIGNIN_FORGET_PASSWORD_forget_password(self):
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()
+        time.sleep(2)
+        Signin_page.click_forget_password()
+        if Signin_page.foregt_ur_password_insert_info("Wrong password"):
+            assert True
+        else:
+            assert False    
+    '''
+    '''
+    def test_case_SIGNIN_signup(self):
+        Signin_page=page.SignInPage(self.driver)
+        SignUp_page=page.SignUpPage(self.driver)
+        Signin_page.click_sign_in_button()
+        time.sleep(2)
+        Signin_page.click_signup()
+        if SignUp_page.insert_ur_name("testing"):
+            assert True
+        else:
+            assert False    
+        
+    '''    
+    '''  
+    def test_case_SIGNIN_FORGET_PASSWORD_forget_password(self):
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()
+        time.sleep(2)
+        Signin_page.click_signin_with_google()
+        if Signin_page.insert_ur_Gmail("testing"):
+            assert True
+        else:
+            assert False                        
+    '''
+    '''
     def test_case_signIn_byGoogle(self):
         Signin_page=page.loginbyGoogle(self.driver)
         Signin_page.click_sign_in_with_Gmail()

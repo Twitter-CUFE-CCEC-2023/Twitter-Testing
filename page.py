@@ -1,3 +1,4 @@
+from numpy import true_divide
 from locator import *
 from lib2to3.pgen2 import driver
 from selenium.webdriver.common.by import By
@@ -12,40 +13,127 @@ class BasePage(object):
 #class insertUrPhone(BasePageElement,SignInLocators):
     #locator= "text"
         
-class LoginPage(BasePage):
+class SignInPage(BasePage):
     def click_sign_in_button(self):
-        element = self.driver.find_element(*StartingPageLocators.SIGN_IN)
-        element.click()
+        try:
+            element = self.driver.find_element(*StartingPageLocators.SIGN_IN)
+            element.click()
+            return True
+        except:
+            return False
+                
         
         
     def click_Next_button(self):
-        element = self.driver.find_element(*SignInLocators.NEXT_BUTTON)
-        element.click()    
-    
-    def insert_your_info(self , info:str):
-        element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.NAME,SignInLocators.INSERT_UR_INFO))
-                    )
-        element.clear()
-        element.send_keys(info) 
-        
-        
-    def cheack_ur_error_msg(self):
-        
-       
-        
-        
-        '''
-         print(self.driver.switch_to.alert().text)
         try:
-            element = WebDriverWait(self.driver.switch_to.alert, 10).until(
-        EC.presence_of_element_located((By.XPATH,SignInLocators.ALERT_MSG))
-                    )
-            #element.click()
-            print(element.get_attribute("value"))
+            element = self.driver.find_element(*SignInLocators.NEXT_BUTTON)
+            element.click()
+            return True
         except:
-            print("halooooo")    
-        '''    
+            return False        
+    
+    def check_alert_msg(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.ALERT_MSG))
+                    )
+            return element.text
+        except:
+            return False
+        
+        
+    def insert_your_info(self , info:str):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.INSERT_UR_INFO))
+                    )
+            element.clear()
+            element.send_keys(info)
+        except:
+            return False     
+    def insert_your_password(self , info:str):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.INSERT_UR_PASSWORD))
+                    )
+            element.clear()
+            element.send_keys(info)
+        except:
+            return False         
+    
+    def is_login_button_enable(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.LOG_IN))
+                    )
+            return element.is_enabled()
+        except:
+            return "False"
+    def click_login(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.LOG_IN))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def check_error_msg_of_wrong_password(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.WRONG_PASSWORD))
+                    )
+            return element.text
+        except:
+            return False
+    def click_forget_password(self):
+        
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.FORGET_PASSWORD))
+                    )
+            element.click()
+            return True
+        except:
+            return False            
+    def foregt_ur_password_insert_info(self , info:str):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.INSERT_UR_MAIL_AFTER_FORGET_PASSWORD))
+                    )
+            element.clear()
+            element.send_keys(info)
+            return True
+        except:
+            return False   
+    def click_signup(self):
+        
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.SIGN_UP))
+                    )
+            element.click()
+            return True
+        except:
+            return False         
+    def click_signin_with_google(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.SIGNIN_WITH_GOOGLE))
+                    )
+            element.click() 
+        except:
+            return False 
+    def insert_ur_Gmail(self,Email:str):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.INSERT_UR_GMAIL))
+                    )
+            element.clear()
+            element.send_keys(Email)
+            return True
+        except:
+            return False       
 class SignUpPage(BasePage):
     def insert_ur_email(self,Email:str):
         element = WebDriverWait(self.driver, 10).until(
@@ -70,6 +158,7 @@ class SignUpPage(BasePage):
                     )
             element.clear()
             element.send_keys(name)
+            return True
         except:
             return False   
     def click_phone_link(self):
@@ -170,7 +259,8 @@ class SignUpPage(BasePage):
                     )
         #print("the button",element.is_enabled())
         return element.is_enabled()
-        
+   
+            
         
               
 class loginbyGoogle(BasePage):
