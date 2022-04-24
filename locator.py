@@ -14,7 +14,7 @@ class SignInLocators(object):
     SIGN_UP="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[5]/a[1]/span[1]"
     FORGET_PASSWORD="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[4]/a[1]/div[1]/p[1]"
     ALERT_MSG_TEXT="Sorry, we could not find your account."
-    INSERT_UR_PASSWORD="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/form[2]/div[1]/div[1]/input[1]"
+    INSERT_UR_PASSWORD="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/form[2]/div[1]/div[1]/input[1]"
     LOG_IN ="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/button[1]"
     WRONG_PASSWORD="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]"
     WRONG_PASSWORD_TEXT="Wrong password!"
@@ -69,3 +69,7 @@ class Settings_Locators(object):
     notifications_ident = " "
     accessbility_ident = " "
     resources_ident = " "
+    
+    
+class NotificationLocators(object):
+    NOTIFICATIONS_BUTTON="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[4]/a[1]/div[1]"   

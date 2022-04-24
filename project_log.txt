@@ -1,0 +1,45 @@
+SIGN IN PAGE -> test case of forget password in forget password page. 
+FAILED
+
+SIGN IN PAGE -> test case of click next without inserting info. 
+PASSED
+
+SIGN IN PAGE -> test case of insert wrong password. 
+FAILED
+
+SIGN IN PAGE -> test case of Sign in button 
+PASSED
+
+SIGN IN PAGE -> test case of login button is enable withot info. 
+PASSED
+
+SIGN IN PAGE -> test case Sign up link. 
+PASSED
+
+SIGN UP PAGE -> test case of inserting wrong email 
+FAILED
+
+SIGN UP PAGE -> test case of format of  Email link 
+FAILED
+
+SIGN UP PAGE -> test case of Sign up button 
+PASSED
+
+SIGN UP PAGE -> test case of creating account 
+PASSED
+
+SIGN UP PAGE -> test case of is next button is enable without inserting info. 
+FAILED
+
+SIGN UP PAGE -> test case of checking the next button after inserting wrong phone number 
+FAILED
+
+SIGN UP PAGE -> test case of check text of phone link 
+FAILED
+
+SIGN UP PAGE -> test case of inserting more than 50 letter in the textbox of the Name 
+FAILED
+
+SIGN UP PAGE -> test case of inserting wrong number 
+FAILED
+

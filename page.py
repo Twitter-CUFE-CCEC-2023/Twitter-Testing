@@ -215,15 +215,18 @@ class SignUpPage(BasePage):
             return False
         
     def cheack_ur_name_size(self):
+        try:
             element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.NAME,SignUpLocators.NAME_TEXTBOX))
+            EC.presence_of_element_located((By.XPATH,SignUpLocators.NAME_TEXTBOX))
                     )
             check=0
             check=len(element.get_attribute("value"))
             if check>50:
                 return False
             else:
-                 return  True   
+                 return  True
+        except:
+            return False        
     def choose_day_month_year(self,Month:str,Day:int,Year:int):
         ''''
         element = WebDriverWait(self.driver, 10).until(
@@ -250,7 +253,8 @@ class SignUpPage(BasePage):
             element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_CREATE_ACCOUNT))
                     )
-            element.click() 
+            element.click()
+            return True 
         except:
             return False    
     def is_NEXT_enable(self):
