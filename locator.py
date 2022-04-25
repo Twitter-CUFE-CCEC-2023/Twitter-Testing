@@ -69,7 +69,31 @@ class Settings_Locators(object):
     notifications_ident = " "
     accessbility_ident = " "
     resources_ident = " "
+
+    search_result = " "
+
+class Side_bar_Locators(object):
+    Home = "/html/body/div[1]/div/div/div[1]/div[2]/a/div"
+    Explore = "/html/body/div[1]/div/div/div[1]/div[3]/a/div"
+    Notifications = "/html/body/div[1]/div/div/div[1]/div[4]/a/div"
+    Messages = "/html/body/div[1]/div/div/div[1]/div[5]/a/div"
+    bookmark = "/html/body/div[1]/div/div/div[1]/div[6]/a/div"
+    lists = "/html/body/div[1]/div/div/div[1]/div[7]/a/div"
+    profile = "/html/body/div[1]/div/div/div[1]/div[8]/a/div"
+    more = "/html/body/div/div/div/div[1]/div[9]"
+    tweet_box = "/html/body/div[1]/div/div/div[1]/div[10]/div"
+
+    Settings_more = "/html/body/div[1]/div/div/div[1]/div[1]/div/div/div/ul/div[7]/a/div"
+    topics = "/html/body/div[1]/div/div/div[1]/div[1]/div/div/div/ul/div[1]/a/div"
+
+    Settings_identifier = "/html/body/div[1]/div/div/div[2]/div[1]/h2"  # header of page
+    Home_ident = "/html/body/div[1]/div/div/div[2]/h2"
+
+    tweet_box_itself = ""
     
-    
-class NotificationLocators(object):
-    NOTIFICATIONS_BUTTON="/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[4]/a[1]/div[1]"   
+
+sign_in = "/html/body/div/div/div[1]/div[1]/div/div[5]/a"
+email_field = "/html/body/div/div/div/div/div/div[2]/div/form/div/div/input"
+next_button = '/html/body/div/div/div/div/div/div[2]/div/div[3]/p'
+pass_field = "/html/body/div[1]/div/div/div/div/div/div[2]/form[2]/div/div/input"
+log_in_button = "/html/body/div[1]/div/div/div/div/div/div[2]/div[2]/button"
