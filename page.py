@@ -1,8 +1,10 @@
+from pickle import TRUE
 from numpy import true_divide
 from locator import *
 from lib2to3.pgen2 import driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 #from selenium.webdriver_manger.chrome import ChromeDriverManger
 
@@ -66,6 +68,7 @@ class SignInPage(BasePage):
             element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH,SignInLocators.LOG_IN))
                     )
+            print("hallo")
             return element.is_enabled()
         except:
             return "False"
@@ -95,7 +98,27 @@ class SignInPage(BasePage):
             element.click()
             return True
         except:
-            return False            
+            return False  
+    def click_forget_password_1(self):
+            
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.FORGET_PASSWORD_2))
+                    )
+            element.click()
+            return True
+        except:
+            return False     
+    def click_forget_password_in(self):
+        
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.FORGET_PASSWORD_1))
+                    )
+            element.click()
+            return True
+        except:
+            return False               
     def foregt_ur_password_insert_info(self , info:str):
         try:
             element = WebDriverWait(self.driver, 10).until(
@@ -125,6 +148,7 @@ class SignInPage(BasePage):
         except:
             return False 
     def insert_ur_Gmail(self,Email:str):
+        
         try:
             element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH,SignInLocators.INSERT_UR_GMAIL))
@@ -133,16 +157,115 @@ class SignInPage(BasePage):
             element.send_keys(Email)
             return True
         except:
+            return False  
+        
+    def is_search_button_enable(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.SEARCH_BUTTON))
+                    )
+            return element.is_enabled()
+        except:
+            return "False" 
+    def click_search_button(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.SEARCH_BUTTON_1))
+                    )
+            element.click()
+            return
+        except:
+            print("i am")
+            return "False"  
+    def check_alert_msg_of_forget_password(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.ALERT_MSG_FORGET_PASSWORD))
+                    )
+            return element.text
+        except:
             return False       
+    def insert_ver_code(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,SignInLocators.VER_CODE))
+                    )
+            element.clear()
+            element.send_keys("293922")
+            return True
+        except:
+            return False
+                    
 class SignUpPage(BasePage):
     def insert_ur_email(self,Email:str):
         element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.XPATH,SignUpLocators.EMAIL_TEXTBOX))
+        EC.presence_of_element_located((By.ID,SignUpLocators.EMAIL_TEXTBOX))
                     )
         element.clear()
         element.send_keys(Email)
-        
-        
+    def insert_ur_username(self,username:str):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.ID,SignUpLocators.USERNAME_TEXTBOX))
+                    )
+        element.clear()
+        element.send_keys(username)    
+    def click_NEXT_in_next_page(self):
+            try:
+                element = WebDriverWait(self.driver, 10).until(
+                 EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_PAGE_NEXT))
+                    )
+                element.click() 
+                return True     
+            except:
+                return False         
+    def select_gender(self,gender):
+            try:
+                element = WebDriverWait(self.driver, 10).until(
+                 EC.presence_of_element_located((By.XPATH,SignUpLocators.GENDER))
+                    )
+                
+                drop=Select(element)
+                drop.select_by_value(gender)
+                return True     
+            except:
+                return False        
+    def Check_year(self,year):
+        try:
+                years = WebDriverWait(self.driver, 10).until(
+                 EC.presence_of_element_located((By.XPATH,SignUpLocators.YEAR))
+                    )
+              
+                years=Select(years)
+                try:
+                    years.select_by_value(year)
+                    return True
+                except:
+                    return False
+                   
+        except:
+                return False       
+    def select_age(self,day,month,year):
+            try:
+                mon = WebDriverWait(self.driver, 10).until(
+                 EC.presence_of_element_located((By.XPATH,SignUpLocators.MONTH))
+                    )
+                dia = WebDriverWait(self.driver, 10).until(
+                 EC.presence_of_element_located((By.XPATH,SignUpLocators.DAY))
+                    )
+                
+                years = WebDriverWait(self.driver, 10).until(
+                 EC.presence_of_element_located((By.XPATH,SignUpLocators.YEAR))
+                    )
+                dia=Select(dia)
+                dia.select_by_value(day)
+                mon=Select(mon)
+                mon.select_by_value(month)
+                years=Select(years)
+                years.select_by_value(year)
+                
+                return True     
+            except:
+                return False           
     def click_sign_up(self):
         try:
             element = self.driver.find_element(*StartingPageLocators.SIGN_UP_BY_PHONE_OR_EMAIL)
@@ -181,7 +304,7 @@ class SignUpPage(BasePage):
             return False     
     def insert_ur_phone(self, phone:str): 
         element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.XPATH,SignUpLocators.PHONE_TEXTBOX))
+        EC.presence_of_element_located((By.ID,SignUpLocators.PHONE_TEXTBOX))
                     )
         element.clear()
         element.send_keys(phone)
@@ -261,18 +384,33 @@ class SignUpPage(BasePage):
         element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH,SignUpLocators.NEXT_CREATE_ACCOUNT))
                     )
-        #print("the button",element.is_enabled())
+        print("the button",element.is_enabled())
         return element.is_enabled()
    
             
         
               
 class loginbyGoogle(BasePage):
-     def click_sign_in_with_Gmail(self):
-        element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.XPATH,StartingPageLocators.SIGN_IN_WITH_APPLE))
+    def click_sign_in_with_Gmail(self):
+        try:
+            
+            element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,StartingPageLocators.SIGN_IN_WITH_GOOGLE))
                     )
-        element.click()
+            element.click()
+            return True
+        except:
+            return False    
+    
+    def insert_ur_gamil(self,email):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,StartingPageLocators.SIGN_IN_WITH_GOOGLE))
+                    )
+            element.send_keys(email)
+            return True
+        except:
+            return False    
 
 class enteryourpassword(BasePage):
     def enter_your_password(self,paswword:str):

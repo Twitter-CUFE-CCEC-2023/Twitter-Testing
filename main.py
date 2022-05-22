@@ -1,5 +1,6 @@
 from faulthandler import is_enabled
 from lib2to3.pgen2 import driver
+from sqlite3 import Time
 import unittest
 from selenium import webdriver
 import page
@@ -17,7 +18,8 @@ passed=0
 failed=0
 STARTUP_PAGE="http://www.twittercloneteamone.tk/"
 HOME_PAGE="http://www.twittercloneteamone.tk/home"
-Report = open("project_log.txt", "a")
+Report_signIn = open("sign_in.txt", "a")
+Report_signUp = open("sign_up.txt", "a")
 class PythonOrgSearch(unittest.TestCase):
     
     def setUp(self):
@@ -26,28 +28,40 @@ class PythonOrgSearch(unittest.TestCase):
         
 
    
-
- 
+    
+    
     def test_case_SIGNUP_click_sign_up_button(self):
         SignUp_page=page.SignUpPage(self.driver)
         global testcases
         global passed
         global failed
         testcases+=1
-        #Report.write("test case=>",testcases)
-        Report.write("SIGN UP PAGE -> test case of Sign up button \n" )
+        #Report_signIn.write("test case=>",testcases)
+        Report_signUp.write("SIGN UP PAGE -> test case of Sign up button \n" )
         
         if(SignUp_page.click_sign_up()):
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True         
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED\n\n")
             assert False    
         
         #testing:that the next button is enable or not    # i cant detect the message bec its pop msg and disapper and selenium cant deal with it
-    
+   
+    def test_case_SIGNUP_by_Gmail(self):
+        sign_up=page.loginbyGoogle(self.driver)
+        Report_signUp.write("SIGN UP PAGE -> test case of Sign up with google \n" )
+        if(sign_up.click_sign_in_with_Gmail()):
+            Report_signUp.write("PASSED\n\n")
+            assert True
+        else:
+            Report_signUp.write("FAILED\n\n")
+            assert False
+                
+           
+        
     
     def test_case_SIGNUP_is_next_Enable(self):
         global testcases
@@ -56,16 +70,17 @@ class PythonOrgSearch(unittest.TestCase):
         testcases+=1
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
-        Report.write("SIGN UP PAGE -> test case of is next button is enable without inserting info. \n" )
+        Report_signUp.write("SIGN UP PAGE -> test case of is next button is enable without inserting info. \n" )
         #testing:that the next button is enable or not 
         if(SignUp_page.is_NEXT_enable()):
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED:next button is enable\n\n")
             assert False
         else:
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True       
+        
         
         #testing: that text box cant carry more than 50 letters
           
@@ -74,28 +89,28 @@ class PythonOrgSearch(unittest.TestCase):
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN UP PAGE -> test case of inserting more than 50 letter in the textbox of the Name \n" )
+        Report_signUp.write("SIGN UP PAGE -> test case of inserting more than 50 letter in the textbox of the Name \n" )
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()   
         SignUp_page.insert_ur_name(SignUpLocators.WRONG_NAMEX50)
         if(SignUp_page.cheack_ur_name_size()):
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True
         else:
             # if it more than 50 letter as ur name
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED\n\n")
             assert False    
-           
-         
+          
+    
         #testing  inserting a wrong email address text box
     def test_case_SIGNUP__wrong_email(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN UP PAGE -> test case of inserting wrong email \n" ) 
+        Report_signUp.write("SIGN UP PAGE -> test case of inserting wrong email \n" ) 
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()       
         SignUp_page.insert_ur_email("1234")
@@ -103,58 +118,58 @@ class PythonOrgSearch(unittest.TestCase):
         print(actualmsg)
         if actualmsg==SignUpLocators.EXPECTED_MSG_EMAIL:
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED: no error msg when you enter invaild email\n\n")
             assert False
             
-    
+        
     def test_case_SIGNUP_phone_link_text(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN UP PAGE -> test case of check text of phone link \n" )
+        Report_signUp.write("SIGN UP PAGE -> test case of check text of phone link \n" )
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
         if SignUpLocators.PHONE_LINK_TEXT==SignUp_page.check_phone_link():
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED\n\n")
             assert False 
-    
+     
            
     def test_case_SIGNUP_wrong_phone_number(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN UP PAGE -> test case of inserting wrong number \n" )
+        Report_signUp.write("SIGN UP PAGE -> test case of inserting wrong number \n" )
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
         SignUp_page.click_phone_link()
         SignUp_page.insert_ur_phone(SignUpLocators.WRONG_NAMEX50)
         if SignUpLocators.ERROR_MSG_EMAIL==SignUp_page.check_wrong_msg_email():
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED:no error msg when you enter invaild phone number\n\n")
             assert False    
      
-       
+    
     def test_case_SIGNUP_next_enable_after_inserting_wrong_phone(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN UP PAGE -> test case of checking the next button after inserting wrong phone number \n" )
+        Report_signUp.write("SIGN UP PAGE -> test case of checking the next button after inserting wrong phone number \n" )
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
         SignUp_page.click_phone_link()
@@ -162,11 +177,11 @@ class PythonOrgSearch(unittest.TestCase):
         SignUp_page.insert_ur_name("testing")
         if(SignUp_page.is_NEXT_enable()):
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED\n\n")
             assert False
         else:
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True 
     
     
@@ -175,161 +190,235 @@ class PythonOrgSearch(unittest.TestCase):
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN UP PAGE -> test case of format of  Email link \n" )
+        Report_signUp.write("SIGN UP PAGE -> test case of format of  Email link \n" )
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
         SignUp_page.click_phone_link()
         if SignUpLocators.EMAIL_LINK_TEXT==SignUp_page.check_Email_link():
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED\n\n")
             assert False    
          
                    
-    '''    
-    def test_case_SIGNUP_choose_date(self): 
-        SignUp_page=page.SignUpPage(self.driver)
-        SignUp_page.click_sign_up()
+       
+  
             
-    '''         
-        
+       
     
     def test_case_SIGNUP_create_account(self): 
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN UP PAGE -> test case of creating account \n" )
+        Report_signUp.write("SIGN UP PAGE -> test case of creating account \n" )
         SignUp_page=page.SignUpPage(self.driver)
         SignUp_page.click_sign_up()
         #when i click on the link it clear my name      
-        SignUp_page.insert_ur_name("testing")
-        SignUp_page.click_phone_link()      
-        SignUp_page.insert_ur_phone("01001729999")
-        time.sleep(2) 
+        SignUp_page.insert_ur_name("lucio")     
+        SignUp_page.insert_ur_email("alihithem2000@gamil.com")
+        SignUp_page.insert_ur_username("lucio")
+        SignUp_page.select_gender("Male")
+       
+        print(SignUp_page.select_age("17","04","2000"))
+        time.sleep(6) 
        # SignUp_page.choose_day_month_year()
         SignUp_page.click_NEXT()
-        if SignUp_page.click_NEXT():
+        if SignUp_page.click_NEXT_in_next_page():
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signUp.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signUp.write("FAILED\n\n")
             assert False    
+    
+    def test_case_signUp_cheackYear(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_signUp.write("SIGN UP PAGE -> test case of check years \n" )
+        SignUp_page=page.SignUpPage(self.driver)
+        SignUp_page.click_sign_up()
+        if(SignUp_page.Check_year("2022")):
+            passed+=1
+            Report_signUp.write("PASSED\n\n")
+            assert True
+        else:
+            failed+=1
+            Report_signUp.write("FAILED: not all years are exist\n\n")
+            assert False  
+                 
         
-       
+        
+             
+        
     def test_case_SIGNIN_click_the_button(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN IN PAGE -> test case of Sign in button \n" )
+        Report_signIn.write("SIGN IN PAGE -> test case of Sign in button \n" )
         Signin_page=page.SignInPage(self.driver)
         if Signin_page.click_sign_in_button():
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signIn.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signIn.write("FAILED\n\n")
             assert False    
     
-   
+    
     
     def test_case_SIGNIN_check_error_msg(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN IN PAGE -> test case of click next without inserting info. \n" )
+        Report_signIn.write("SIGN IN PAGE -> test case of click next without inserting info. \n" )
         Signin_page=page.SignInPage(self.driver)
         Signin_page.click_sign_in_button()
         time.sleep(5)
         Signin_page.click_Next_button()
         if Signin_page.check_alert_msg()==SignInLocators.ALERT_MSG_TEXT:
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signIn.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signIn.write("FAILED\n\n")
             assert False    
      
+      
+    def test_case_SIGNIN_forget_password(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_signIn.write("SIGN IN PAGE -> test case of functionality forget password button \n" )
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()  
+        if(Signin_page.click_forget_password()):
+            Report_signIn.write("PASSED\n\n") 
+        else:
+            Report_signIn.write("FAILED: button is not working\n\n")
         
+    def test_case_SIGNIN_FORGET_PASSWORD_search_button(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_signIn.write("SIGN IN PAGE -> test case of functionality enable of search button \n" )
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()  
+        Signin_page.click_forget_password()
+        if(Signin_page.is_search_button_enable()):
+            Report_signIn.write("FAILED: search button is not enable without info\n\n")
+            assert False
+        else:
+            Report_signIn.write("PASSED\n\n")
+            assert True
+     
+    #look at rhis again      
+    def test_case_SIGNIN_FORGET_PASSWORD_insert_wrong_info(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_signIn.write("SIGN IN PAGE(FORGET PASSWORD) -> test case of cheack error msg when enter wrong email in search text \n" )
+        Signin_page=page.SignInPage(self.driver)
+        Signin_page.click_sign_in_button()  
+        Signin_page.click_forget_password()
+        Signin_page.foregt_ur_password_insert_info("not working")
+        time.sleep(2)
+        Signin_page.click_search_button()
+        if(Signin_page.check_alert_msg_of_forget_password()==SignInLocators.ALERT_MSG_TEXT):
+            Report_signIn.write("PASSED\n\n")
+            assert False
+        else:
+            Report_signIn.write("FAILED : wrong msg \n\n")
+            assert True    
+                
+        
+     
     def test_case_SIGNIN_login_enable(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN IN PAGE -> test case of login button is enable withot info. \n" )
+        Report_signIn.write("SIGN IN PAGE -> test case of login button is enable withot info. \n" )
         Signin_page=page.SignInPage(self.driver)
         Signin_page.click_sign_in_button()
-        Signin_page.insert_your_info("testing")
-        Signin_page.click_Next_button()
+        Signin_page.insert_your_info("ellethykhaled2@gmail.com")
         time.sleep(2)
-        if (not Signin_page.is_login_button_enable()):
+        Signin_page.click_Next_button()
+        if (Signin_page.is_login_button_enable()):
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signIn.write("FAILED\n\n")
             assert False
         else:
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signIn.write("PASSED\n\n")
             assert True    
-    
-    
+     
+       
     def test_case_SIGNIN_check_wrong_pass(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN IN PAGE -> test case of insert wrong password. \n" )
+        Report_signIn.write("SIGN IN PAGE(FORGET PASSWORD) -> test case of insert wrong password. \n" )
         Signin_page=page.SignInPage(self.driver)
         Signin_page.click_sign_in_button()
-        Signin_page.insert_your_info("testing")
+        Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+        time.sleep(2)
         Signin_page.click_Next_button()
         Signin_page.insert_your_password("wrong password")
         time.sleep(2)
         Signin_page.click_login()
         if Signin_page.check_error_msg_of_wrong_password()==SignInLocators.WRONG_PASSWORD_TEXT:
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signIn.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signIn.write("FAILED\n\n")
             assert False    
-    
+   
     
     def test_case_SIGNIN_FORGET_PASSWORD_forget_password(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN IN PAGE -> test case of forget password. \n" )
+        Report_signIn.write("SIGN IN PAGE -> test case of forget password. \n" )
         Signin_page=page.SignInPage(self.driver)
         Signin_page.click_sign_in_button()
         time.sleep(2)
-        Signin_page.click_forget_password()
+        Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+        time.sleep(2)
+        Signin_page.click_Next_button()
+        Signin_page.click_forget_password_1()
         if Signin_page.foregt_ur_password_insert_info("Wrong password"):
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signIn.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signIn.write("FAILED\n\n")
             assert False    
-    
     
     def test_case_SIGNIN_signup(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN IN PAGE -> test case Sign up link. \n" )
+        Report_signIn.write("SIGN IN PAGE -> test case Sign up link from sign in page . \n" )
         Signin_page=page.SignInPage(self.driver)
         SignUp_page=page.SignUpPage(self.driver)
         Signin_page.click_sign_in_button()
@@ -337,35 +426,36 @@ class PythonOrgSearch(unittest.TestCase):
         Signin_page.click_signup()
         if SignUp_page.insert_ur_name("testing"):
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signIn.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signIn.write("FAILED\n\n")
             assert False    
         
-      
-     
+   
     def test_case_SIGNIN_FORGET_PASSWORD_forget_password(self):
         global testcases
         global passed
         global failed
         testcases+=1
-        Report.write("SIGN IN PAGE -> test case of forget password in forget password page. \n" )
+        Report_signIn.write("SIGN IN PAGE -> test case of forget password in forget password page. \n" )
         Signin_page=page.SignInPage(self.driver)
         Signin_page.click_sign_in_button()
+        Signin_page.click_forget_password_in()
+        Signin_page.foregt_ur_password_insert_info(StartingPageLocators.USERNAME)
         time.sleep(2)
-        Signin_page.click_signin_with_google()
-        if Signin_page.insert_ur_Gmail("testing"):
+        Signin_page.click_search_button()
+        if Signin_page.insert_ver_code():
             passed+=1
-            Report.write("PASSED\n\n")
+            Report_signIn.write("PASSED\n\n")
             assert True
         else:
             failed+=1
-            Report.write("FAILED\n\n")
+            Report_signIn.write("FAILED\n\n")
             assert False                        
     
-       
+     
         
         
     
