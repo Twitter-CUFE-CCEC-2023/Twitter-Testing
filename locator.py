@@ -64,6 +64,26 @@ class Passwordlocarors(object):
     FORGET_PASSWORD = "//span[contains(text(),'Forgot password?')]" #XPATH
     LOGIN_BUTTON = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]"
     FORGET_PASSWORD_TEXT = "Forgot password?"
+
+class profilelocators(object):
+    TWETA="be carefull i am testing"
+    PEOFILE_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[8]/a[1]/div[1]/*[name()='svg'][1]/*[name()='path'][1]"
+    HOME_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[2]/a[1]/div[1]"
+    BODY_OF_THE_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[3]/div[2]"
+    FIRST_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]"
+    SECOND_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[2]/div[1]/div[1]/div[3]/div[2]"
+    TWEET_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[1]/div[1]"
+    TEXT_OF_THE_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[3]/div[2]/div[1]/div[1]/form[1]/div[1]/textarea[1]"
+    TWEET_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[3]/div[2]/div[1]/div[2]/button[6]"
+    X_TWEET_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[3]/div[1]/img[1]"
+    DISCARD_MSG=""
+    EDIT_PROFILE="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[4]/button[1]"
+    FOLLOW_BUG=  "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/button[1]"
+    MY_PIC_IN_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[3]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]"
+    TWEETX280="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    
+    
+    
     
       
 class Settings_Locators(object):
