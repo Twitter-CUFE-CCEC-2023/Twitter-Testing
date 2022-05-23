@@ -1,4 +1,5 @@
 from pickle import TRUE
+import re
 from numpy import true_divide
 from locator import *
 from lib2to3.pgen2 import driver
@@ -436,3 +437,92 @@ class enteryourpassword(BasePage):
         EC.presence_of_element_located((By.XPATH,Passwordlocarors.LOGIN_BUTTON))
                     )
         element.click()
+        
+class profile(BasePage):
+    def click_profile_icon(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.PEOFILE_ICON))
+                    )
+        element.click()
+    def click_home_icon(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.HOME_ICON))
+                    )
+        element.click()
+        
+    def click_on_tweet_icon(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.TWEET_ICON))
+                    )
+        element.click()
+        
+    def tweet(self,tweet):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.TEXT_OF_THE_TWEET))
+                    )
+        element.send_keys(tweet)
+    
+    def click_on_tweet_button(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.TWEET_BUTTON))
+                    )
+        element.click()
+    
+    def click_on_my_pic_in_tweet(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.MY_PIC_IN_TWEET))
+                    )
+        element.click()
+            
+    def click_on_X_in_tweet(self):
+        element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.X_TWEET_BUTTON))
+                    )
+        element.click()
+        
+    def click_on_discrad_msg(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.DISCARD_MSG))
+                    )
+            element.click()
+            print("jajja")
+            return True
+        except:
+               print("ahah")
+               return 
+                
+    
+    def click_on_follow(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.FOLLOW_BUG))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def cheack_ur_tweet_size(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.TEXT_OF_THE_TWEET))
+                    )
+            check=0
+            check=len(element.get_attribute("value"))
+            print(check)
+            if check>280:
+                return True
+            else:
+                return False 
+        except:
+            return False    
+        
+            
+        
+            
+            
+            
+        
+
+                
+                

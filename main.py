@@ -16,10 +16,11 @@ PATH = "C:/Users/Lucio/AppData/Local/Programs/Python/Python310/chromedriver_win3
 testcases=0
 passed=0
 failed=0
-STARTUP_PAGE="http://www.twittercloneteamone.tk/"
+STARTUP_PAGE="https://www.twittercloneteamone.tk"
 HOME_PAGE="http://www.twittercloneteamone.tk/home"
 Report_signIn = open("sign_in.txt", "a")
 Report_signUp = open("sign_up.txt", "a")
+Report_profile = open("Profile.txt", "a")
 class PythonOrgSearch(unittest.TestCase):
     
     def setUp(self):
@@ -29,7 +30,7 @@ class PythonOrgSearch(unittest.TestCase):
 
    
     
-    
+    '''
     def test_case_SIGNUP_click_sign_up_button(self):
         SignUp_page=page.SignUpPage(self.driver)
         global testcases
@@ -324,7 +325,7 @@ class PythonOrgSearch(unittest.TestCase):
             Report_signIn.write("PASSED\n\n")
             assert True
      
-    #look at rhis again      
+         
     def test_case_SIGNIN_FORGET_PASSWORD_insert_wrong_info(self):
         global testcases
         global passed
@@ -456,11 +457,169 @@ class PythonOrgSearch(unittest.TestCase):
             assert False                        
     
      
+    def test_case_profile_tweet(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> tweet a tweet \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            profile.tweet("hallo")
+            profile.click_on_tweet_button()
+            time.sleep(5)
         
-        
+            #refresh
+            profile.click_profile_icon()
+            time.sleep(2)
+            profile.click_home_icon()
+            time.sleep(2)
+            profile.click_profile_icon()
+            time.sleep(5)
+            #refresh
+            Report_profile.write("PASSED \n" )
+        except:
+            Report_profile.write("FAILED \n" )
+                
+    def test_case_follow_myslef(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> follow myself \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            profile.click_on_my_pic_in_tweet()
+            profile.click_on_X_in_tweet()
+            if profile.click_on_follow():
+               Report_profile.write("FAILED: congratulation you followed yourself XD \n" )  
+            else:
+                Report_profile.write("PASSED \n\n" )    
+        except:
+            pass
     
+    def test_case_body_of_the_tweet(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> body of the tweet accept more than 280 letter \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            profile.tweet(profilelocators.TWEETX280)
+            if profile.cheack_ur_tweet_size():
+                Report_profile.write("PASSED \n\n" )
+            else:
+                Report_profile.write("FALIED : ACCEPT more than 280 letter \n\n" )    
+        except:
+            pass    
+               
+    '''    
+    def test_case_discard_msg(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> discard msg of the tweet when you cancel it  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            profile.tweet("koko")
+            if profile.click_on_discrad_msg:
+               Report_profile.write("FALIED : there is no discard msg  \n\n" )
+            else:
+                Report_profile.write("PASSED  \n\n" )
+                    
+                
+            
+            
+        except:
+            Report_profile.write("FALIED : there is no discard msg  \n\n" )
     
+    def log_in(self):
+        Signin_page=page.SignInPage(self.driver)
+        profile=page.profile(self.driver)
+        Signin_page.click_sign_in_button()
+        Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+        time.sleep(2)
+        Signin_page.click_Next_button()
+        Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+        time.sleep(2)
+        Signin_page.click_login()
+        time.sleep(5)   
+        profile.click_profile_icon()
+        time.sleep(2)
     
+    def refresh(self):
+        profile=page.profile(self.driver)  
+        profile.click_profile_icon()
+        time.sleep(2)
+        profile.click_home_icon()
+        time.sleep(2)
+        profile.click_profile_icon()  
     
     
     def tearDown(self):

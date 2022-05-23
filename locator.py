@@ -7,6 +7,7 @@ class StartingPageLocators(object):
     SIGN_IN_WITH_GOOGLE = ("/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[2]")
     USERNAME="ellethykhaled2@gmail.com"
     PASSWORD="kokokaka99"
+    USERNAME_1="ellethykhaled"
     
 class SignInLocators(object):
     INSERT_UR_INFO = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/input[1]"
@@ -64,6 +65,7 @@ class Passwordlocarors(object):
     LOGIN_BUTTON = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]"
     FORGET_PASSWORD_TEXT = "Forgot password?"
     
+      
 class Settings_Locators(object):
     page_name = 'h2[class="SettingsSection_settings-section-header__uXJhj"]'
     Search_bar = 'input[placeholder="Search settings"]'
