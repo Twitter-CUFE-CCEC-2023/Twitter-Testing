@@ -135,48 +135,151 @@ class profilelocators(object):
     
                      
 class Settings_Locators(object):
-    page_name = 'h2[class="SettingsSection_settings-section-header__uXJhj"]'
-    Search_bar = 'input[placeholder="Search settings"]'
-    your_account ="/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]"
-    Twitter_blue = "/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[2]"
-    Security_and_Account = "/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[3]"
-    Privacy_and_safety = "/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[4]"
-    notifications = "/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[5]"
-    accessbility = "/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[6]"
-    resources = "/html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[7]"
+    
+    Search_bar = '/html/body/div[3]/div/div/div[2]/div[1]/div[1]/form/input'
+    your_account ="/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]"
+    Twitter_blue = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[2]"
+    Security_and_Account = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[3]"
+    Privacy_and_safety = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[4]"
+    notifications = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[5]"
+    accessbility = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[6]"
+    resources = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[7]"
 
-    your_account_ident ="/html/body/div[1]/div/div/div[2]/div[2]/h2"
-    Twitter_blue_ident = " "
-    Security_and_Account_ident = " "
-    Privacy_and_safety_ident = " "
-    notifications_ident = " "
-    accessbility_ident = " "
-    resources_ident = " "
+    your_account_ident ="/html/body/div[3]/div/div/div[2]/div[2]/h2"
+    under_construct = "/html/body/div[1]/div[2]/div[3]/button"
 
     search_result = " "
 
 class Side_bar_Locators(object):
-    Home = "/html/body/div[1]/div/div/div[1]/div[2]/a/div"
-    Explore = "/html/body/div[1]/div/div/div[1]/div[3]/a/div"
-    Notifications = "/html/body/div[1]/div/div/div[1]/div[4]/a/div"
-    Messages = "/html/body/div[1]/div/div/div[1]/div[5]/a/div"
-    bookmark = "/html/body/div[1]/div/div/div[1]/div[6]/a/div"
-    lists = "/html/body/div[1]/div/div/div[1]/div[7]/a/div"
-    profile = "/html/body/div[1]/div/div/div[1]/div[8]/a/div"
-    more = "/html/body/div/div/div/div[1]/div[9]"
-    tweet_box = "/html/body/div[1]/div/div/div[1]/div[10]/div"
+    Home = "/html/body/div[3]/div/div/div/div[1]/div[2]/a/div"
+    Explore = "/html/body/div[3]/div/div/div/div[1]/div[3]/a/div"
+    Notifications = "/html/body/div[3]/div/div/div/div[1]/div[4]/a/div"
+    Messages = "/html/body/div[3]/div/div/div/div[1]/div[5]/a/div"
+    bookmark = "/html/body/div[3]/div/div/div/div[1]/div[6]/a/div"
+    lists = "/html/body/div[3]/div/div/div/div[1]/div[7]/a/div"
+    profile = "/html/body/div[3]/div/div/div/div[1]/div[8]/a/div"
+    more = "/html/body/div[3]/div/div/div/div[1]/div[9]/div[1]"
+    tweet_box = "/html/body/div[3]/div/div/div/div[1]/div[10]/div[1]"
 
-    Settings_more = "/html/body/div[1]/div/div/div[1]/div[1]/div/div/div/ul/div[7]/a/div"
-    topics = "/html/body/div[1]/div/div/div[1]/div[1]/div/div/div/ul/div[1]/a/div"
+    Settings_more = "/html/body/div[3]/div/div/div/div[1]/div[9]/div[2]/a[7]"
+    topics = "/html/body/div[3]/div/div/div/div[1]/div[9]/div[2]/a[1]"
 
-    Settings_identifier = "/html/body/div[1]/div/div/div[2]/div[1]/h2"  # header of page
-    Home_ident = "/html/body/div[1]/div/div/div[2]/h2"
+    Settings_identifier = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[5]"
+    Home_ident = "/html/body/div[3]/div/div/div/div[2]/div[1]/div[2]/button[6]"
 
-    tweet_box_itself = ""
+    tweet_box_itself = "/html/body/div[3]/div/div/div/div[1]/div[10]/div[3]/div[2]/div/div[1]/form/div/textarea"
+    tweet_button_dialog = "/html/body/div[3]/div/div/div/div[1]/div[10]/div[3]/div[2]/div/div[2]/button[6]"
+
+    logout_sidebar = "/html/body/div[3]/div/div/div/div[1]/div[10]/div[2]/div[1]"
+    logout_button = "/html/body/div[3]/div/div/div/div[1]/div[10]/div[2]/div[2]/p[2]"
+
+
+class Edit_Profile_Locators(object):
+    profile_side_bar = "/html/body/div[3]/div/div/div/div[1]/div[8]/a/div"  # xpath kolo
+    edit_profile_button = "/html/body/div[3]/div/div/div/div[2]/div[4]/button"
+    name_field = "/html/body/div[3]/div/div/div/div[2]/div[4]/div/div/div/div[2]/form/div[1]/div/input"
+    bio_field = "/html/body/div[3]/div/div/div/div[2]/div[4]/div/div/div/div[2]/form/div[2]/div/textarea"
+    save_button = "/html/body/div[3]/div/div/div/div[2]/div[4]/div/div/div/div[1]/button"
+
+    profile_page_identifier = "/html/body/div[3]/div/div/div/div[2]/div[4]/button"
+    name_from_profile ="/html/body/div[3]/div/div/div/div[2]/div[5]/div[1]/h6"
+    bio_from_profile ="/html/body/div[3]/div/div/div/div[2]/div[5]/div[2]/p"
+
+class Account_info_Locators(object):
+    more_button_home = "/html/body/div[3]/div/div/div/div[1]/div[9]/div[1]"
+    settings_button = "/html/body/div[3]/div/div/div/div[1]/div[9]/div[2]/a[7]"
+    your_Account_button = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]"
+    account_info_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[1]"
+    account_info_identifier = "/html/body/div[3]/div/div/div[2]/div[2]/h2"
+
+    username_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[1]"
+    username_field = "/html/body/div[3]/div/div/div[2]/div[2]/form/input"
+    username_save= "/html/body/div[3]/div/div/div[2]/div[2]/form/div/button"
+    username_back = "/html/body/div[3]/div/div/div[2]/div[2]/h2/svg"
+
+    Home_sidebar = "/html/body/div[3]/div/div/div[1]/div[2]/a/div"
+    username_home = "/html/body/div[3]/div/div/div/div[1]/div[10]/div[2]/div[1]/div[1]/p[2]"
+
+    phone = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[2]"
+    email = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[3]"
+    verified = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[4]"
+    protected = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[5]"
+    account_creation = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[6]"
+    country = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[7]"
+    gender = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[8]"
+    birth_date = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[9]"
+    age = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[10]"
+    automation = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[11]"
+    under_construction_ident = "/html/body/div[1]/div[2]/div[3]/button"
+
+class your_Account_Locators(object):
+    your_Account_ident = "/html/body/div[3]/div/div/div[2]/div[2]/h2"
+    account_info_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[1]"
+    account_info_identifier = "/html/body/div[3]/div/div/div[2]/div[2]/h2"
+    change_pass_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[2]"
+    change_pass_identifier = "/html/body/div[3]/div/div/div[2]/div[2]/h2"
+    download_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[3]"
+    teams_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[4]"
+    deactivate = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[5]"
+    under_construct = "/html/body/div[1]/div[2]/div[3]/button"
+
+class Change_pass_Locators(object):
+    your_Account_ident = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[5]" # deactivate button
+
+    change_pass_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/div[2]"
+    change_pass_identifier = "/html/body/div[3]/div/div/div[2]/div[2]/h2"
+    
+    old_pass = "/html/body/div[3]/div/div/div[2]/div[2]/div/form/div/div[1]/input" # current
+    new_pass = "/html/body/div[3]/div/div/div[2]/div[2]/div/form/div/div[2]/input"
+    confirm_pass= "/html/body/div[3]/div/div/div[2]/div[2]/div/form/div/div[3]/input"
+    save_button = "/html/body/div[3]/div/div/div[2]/div[2]/div/form/button"
+
+class Home_Page_Locators(object):
+    Homepage_identifier = "/html/body/div[3]/div/div/div/div[2]/div[1]/div[2]/button[6]"
+    search_field = "/html/body/div[3]/div/div/div/div[3]/div[1]/div/form/input"
+    search_button = "/html/body/div[3]/div/div/div/div[3]/div[1]/div/form/svg/path"
+    search_button_css = 'svg[focusable="false"]'
+    search_first_result = "/html/body/div[3]/div/div/div/div[3]/div[1]/div[2]/div/div/a/div/div/div[2]/p[2]"
+    no_result_found = "/html/body/div[3]/div/div/div/div[3]/div[1]/div[2]/div/div/p"
+    profile_pic_what_happening = "/html/body/div[3]/div/div/div/div[2]/div[1]/div[1]/div/a/img"
+
+    what_happening = "/html/body/div[3]/div/div/div/div[2]/div[1]/div[1]/form/div/textarea"
+    what_happening_tweet_button = "/html/body/div[3]/div/div/div/div[2]/div[1]/div[2]/button[6]"
+    first_tweet_text = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[2]"
+
+    media_button = "/html/body/div[3]/div/div/div/div[2]/div[1]/div[2]/div/button/div"
+
+    gif_button = "/html/body/div[3]/div/div/div/div[2]/div[1]/div[2]/button[1]/div"
+    gif_category = "/html/body/div[2]/div/div[2]/div[1]/img"
+    gif_itself = "/html/body/div[2]/div/div[2]/img[1]"
+
+    reply_button_first_tweet = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[3]/div[1]/div/div"
+    reply_field = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/div[3]/div[1]/form/div/textarea"
+    reply_button_reply_dialog = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/div[3]/div[2]/button[6]"
+    reply_itself = "/html/body/div[3]/div/div/div/div[2]/div[4]/div/div[3]/div[3]"
+
+    first_tweet_itself = "/html/body/div[3]/div/div/div/div[2]/div[2]/div"
+    tweet_thrad_ident = "/html/body/div[3]/div/div/div/div[2]/div[1]/h2" # text tweet fo2
+
+    retweet_button_second_tweet = "/html/body/div[3]/div/div/div/div[2]/div[3]/div/div[3]/div[3]/div[3]/div/div"
+
+    like_button_first_tweet = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[3]/div[5]/div/div"
+    like_counter_before = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[3]/div[5]/div/div/p"
+    like_counter_after = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[3]/div[5]/div/div/p"
+
+    profile_link_text = "/html/body/div[3]/div/div/div/div[2]/div[2]/div/div[3]/div[1]/a[1]/h2"
+
+
+
+
     
 
-sign_in = "/html/body/div/div/div[1]/div[1]/div/div[5]/a"
-email_field = "/html/body/div/div/div/div/div/div[2]/div/form/div/div/input"
-next_button = '/html/body/div/div/div/div/div/div[2]/div/div[3]/p'
-pass_field = "/html/body/div[1]/div/div/div/div/div/div[2]/form[2]/div/div/input"
-log_in_button = "/html/body/div[1]/div/div/div/div/div/div[2]/div[2]/button"
+    
+
+sign_in = "/html/body/div[3]/div/div[1]/div[1]/div/div[5]/a/div"
+email_field = "/html/body/div[3]/div/div/div/div/div/div[2]/div[1]/form/div/div/input"
+next_button = '/html/body/div[3]/div/div/div/div/div/div[2]/div[1]/div[3]/p'
+pass_field = "/html/body/div[3]/div/div/div/div/div/div[2]/div/div[2]/div/div/div/input"
+log_in_button = "/html/body/div[3]/div/div/div/div/div/div[3]/div[1]/button"
+email_text = "mekha2000@gmail.com"
+pass_text = "1234567890" 

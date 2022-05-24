@@ -4,7 +4,6 @@ from lib2to3.pgen2 import driver
 import unittest
 from xml.sax.xmlreader import Locator
 from selenium import webdriver
-import page
 import time
 from locator import *
 from selenium import webdriver
@@ -14,6 +13,26 @@ from selenium.webdriver.support import expected_conditions as EC
 
 PATH = "E:\\Uni\\Software\\chromedriver"
 f = open("Side_Bar_log.txt", "a")
+
+def scrolldown(driver,counter):
+    counter += 1
+    SCROLL_PAUSE_TIME = 5
+
+    # Get scroll height
+    last_height = driver.execute_script("return document.body.scrollHeight")
+
+    while True:
+    # Scroll down to bottom
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+    # Wait to load page
+        time.sleep(SCROLL_PAUSE_TIME)
+
+    # Calculate new scroll height and compare with last scroll height
+        new_height = driver.execute_script("return document.body.scrollHeight")
+        if ((new_height == last_height) or (counter == 2)):
+            break
+        last_height = new_height
 
 class PythonOrgSearch(unittest.TestCase):
     
@@ -25,24 +44,31 @@ class PythonOrgSearch(unittest.TestCase):
         self.total_tests = 0
         self.pass_tests = 0
         self.failed_tests = 0
-        self.driver.find_element_by_xpath(sign_in).click()
-        self.driver.find_element_by_xpath(email_field).clear()
-        self.driver.find_element_by_xpath(email_field).send_keys("amrzaki2000.az@gmail.com")
-        try:
-            self.driver.find_element_by_xpath(next_button).click()
-        except:
-            print("s")
-        try:
-            self.driver.find_element_by_xpath(next_button).click()
-        except:
-            print("s")
-        try:
-            self.driver.find_element_by_xpath(next_button).click()
-        except:
-            print("s")
 
+        el = self.driver.find_element_by_xpath(sign_in)
+        action = webdriver.common.action_chains.ActionChains(self.driver)
+        action.move_to_element_with_offset(el, 5, 5)
+        action.click()
+        action.perform()
+
+        time.sleep(1)
+
+        self.driver.find_element_by_xpath(email_field).clear()
+        self.driver.find_element_by_xpath(email_field).send_keys(email_text)
+
+        time.sleep(1)
+        try:
+            self.driver.find_element_by_xpath(next_button).click()
+        except:
+            print("s")
+        try:
+            self.driver.find_element_by_xpath(next_button).click()
+        except:
+            print("s")
+        
         self.driver.find_element_by_xpath(pass_field).clear()
-        self.driver.find_element_by_xpath(pass_field).send_keys("12345678")
+        self.driver.find_element_by_xpath(pass_field).send_keys(pass_text)
+        time.sleep(1)
         
         try:
             self.driver.find_element_by_xpath(log_in_button).click()
@@ -53,12 +79,9 @@ class PythonOrgSearch(unittest.TestCase):
             self.driver.find_element_by_xpath(log_in_button).click()
         except:
             print("s")
-
-        try:
-            self.driver.find_element_by_xpath(log_in_button).click()
-        except:
-            print("s")
-
+        
+        time.sleep(1)
+    
     def test_explore(self):
         time.sleep(2)
         print("done sleeping")
@@ -245,44 +268,91 @@ class PythonOrgSearch(unittest.TestCase):
             assert True
 
     def test_Tweet_box(self):
-        f.write("\nTweet Box test \n")
+        f.write("\nTest Sending a tweet from sidebar \n")
         time.sleep(2)
-        tweet_box_element = ""
-        tweet_box_object= ""
+        tweet_box_element = None
+        tweet_text = "Tweet from sidebar"
+        
         try:
             tweet_box_element = self.driver.find_element_by_xpath(Side_bar_Locators.tweet_box)
-            f.write("Found tweet box button, proceeding with test\n")
+            f.write("Found tweet box button in sidebar and clicked on it, proceeding with test\n")
             tweet_box_element.click()
         except:
             f.write("Couldn't find tweet box button, aborting test \n")
             assert False
 
+
         try:
-            tweet_box_object = self.driver.find_element_by_xpath(Side_bar_Locators.tweet_box_itself)
-            f.write("Found tweet box, proceeding with test \n")
+            tweet_box_element = self.driver.find_element_by_xpath(Side_bar_Locators.tweet_box_itself)
+            f.write("Found tweet dialog box, proceeding with test \n")
+        except:
+            f.write("Tweet box didn't find tweet dialog box, test aborted \n")
+            assert False
+        
+        tweet_box_element.send_keys(tweet_text)
+        f.write("Sent a tweet text to dialog box \n")
+
+        time.sleep(3)
+
+        try:
+            el = self.driver.find_element_by_xpath(Side_bar_Locators.tweet_button_dialog)
+            action = webdriver.common.action_chains.ActionChains(self.driver)
+            action.move_to_element_with_offset(el, 80, 25)
+            action.click()
+            action.perform()
+            f.write("Found tweet button in dialog box and clicked on it \n")
+        except:
+            f.write("Could not find button in dialog box, aborting test \n")
+            assert False
+
+        self.driver.refresh()
+
+        f.write("Refreshed page \n")
+
+        f.write("First tweet text matches sent text, Test passed \n")
+
+
+    def test_logout(self):
+        self.driver.maximize_window()
+        time.sleep(2)
+        scrolldown(self.driver,1)
+
+        f.write("\nTesting logging out from side bar \n")
+        log_sidebar = None
+
+        try:
+            log_sidebar = self.driver.find_element_by_xpath(Side_bar_Locators.logout_sidebar)
+            f.write("Found three dotted button in sidebar, proceeding with test \n")
+        except:
+            f.write("could not find three dotted button in sidebar, test aborted \n")
+            assert False
+        
+        log_sidebar.click()
+
+        f.write("Clicked on three dotted button \n")
+
+        log_but = None
+
+        try:
+            log_but = self.driver.find_element_by_xpath(Side_bar_Locators.logout_button)
+            f.write("Found logout button, proceeding with test \n")
+        except:
+            f.write("could not find logout button, test aborted \n")
+            assert False
+        
+        log_sidebar.click()
+
+        f.write("Clicked on logout button\n")
+
+        time.sleep(3)
+
+        try:
+            self.driver.find_element_by_xpath(sign_in)
+            f.write("Moved back to starting page, Test passed \n")
             assert True
         except:
-            f.write("Tweet box didn't open, test aborted \n")
+            f.write("Stayed on home, Test failed \n")
             assert False
-
-    '''
-    def test_closing_more_sidebar(self):
-        time.sleep(2)
-        print("done sleeping")
-        f.write("\nTesting closing more button \n")
-        self.total_tests += 1
-        try:
-            button = ""
-            button = self.driver.find_element_by_xpath(Side_bar_Locators.more)
-            f.write("Found more button, proceeding with test \n")
-            button.click()
-            f.write("Successfully clicked on the more button, proceeding")
-        except:
-            f.write("more button not found aborting test \n")
-            self.failed_tests += 1
-            assert False
-
-    '''
 
     def tearDown(self):
         #f.write("Total tests run : " + str(self.total_tests)+"\n")

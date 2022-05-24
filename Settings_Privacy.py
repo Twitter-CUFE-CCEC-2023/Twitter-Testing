@@ -3,7 +3,6 @@ from faulthandler import is_enabled
 import unittest
 from xml.sax.xmlreader import Locator
 from selenium import webdriver
-import page
 import time
 from locator import *
 from selenium import webdriver
@@ -15,6 +14,24 @@ from selenium.webdriver.common.keys import Keys as K
 PATH = "E:\\Uni\\Software\\chromedriver"
 f = open("Settings_log.txt", "a")
 
+def reach_Settings(driver):
+    
+    f.write("\n")
+    try:  # try to click on profile from sidebar
+        driver.find_element_by_xpath(Account_info_Locators.more_button_home).click()
+        f.write("Successfully clicked on more button \n")
+    except:
+        f.write("Failed to find more button from sidebar, aborting test \n")
+        return False
+        
+    try:  # try to click on profile from sidebar
+        driver.find_element_by_xpath(Account_info_Locators.settings_button).click()
+        f.write("Successfully clicked on settings button \n")
+        return True
+    except:
+        f.write("Failed to find settings button, aborting test \n")
+        return False
+
 class PythonOrgSearch(unittest.TestCase):
     
     def setUp(self):
@@ -24,24 +41,31 @@ class PythonOrgSearch(unittest.TestCase):
         self.total_tests = 0
         self.pass_tests = 0
         self.failed_tests = 0
-        self.driver.find_element_by_xpath(sign_in).click()
+
+        el = self.driver.find_element_by_xpath(sign_in)
+        action = webdriver.common.action_chains.ActionChains(self.driver)
+        action.move_to_element_with_offset(el, 5, 5)
+        action.click()
+        action.perform()
+
+        time.sleep(1)
+
         self.driver.find_element_by_xpath(email_field).clear()
-        self.driver.find_element_by_xpath(email_field).send_keys("amrzaki2000.az@gmail.com")
-        try:
-            self.driver.find_element_by_xpath(next_button).click()
-        except:
-            print("s")
-        try:
-            self.driver.find_element_by_xpath(next_button).click()
-        except:
-            print("s")
-        try:
-            self.driver.find_element_by_xpath(next_button).click()
-        except:
-            print("s")
+        self.driver.find_element_by_xpath(email_field).send_keys(email_text)
 
+        time.sleep(1)
+        try:
+            self.driver.find_element_by_xpath(next_button).click()
+        except:
+            print("s")
+        try:
+            self.driver.find_element_by_xpath(next_button).click()
+        except:
+            print("s")
+        
         self.driver.find_element_by_xpath(pass_field).clear()
-        self.driver.find_element_by_xpath(pass_field).send_keys("12345678")
+        self.driver.find_element_by_xpath(pass_field).send_keys(pass_text)
+        time.sleep(1)
         
         try:
             self.driver.find_element_by_xpath(log_in_button).click()
@@ -52,34 +76,13 @@ class PythonOrgSearch(unittest.TestCase):
             self.driver.find_element_by_xpath(log_in_button).click()
         except:
             print("s")
-
-        try:
-            self.driver.find_element_by_xpath(log_in_button).click()
-        except:
-            print("s")
         
-        self.driver.maximize_window()
+        time.sleep(1)
 
-        try:
-            button = ""
-            button = self.driver.find_element_by_xpath(Side_bar_Locators.more)
-            f.write("Found more button, proceeding with test \n")
-            button.click()
-            #button.click()
-            #button.click()
-        except:
-            f.write("more button not found aborting test \n")
-            self.failed_tests += 1
+        continue_ = reach_Settings(self.driver)
+
+        if continue_ == False:
             assert False
-
-        try:
-            self.driver.find_element_by_xpath(Side_bar_Locators.Settings_more).click()
-            f.write("Reached Settings \n")
-        except:
-            f.write("Couldn't find settings in more \n")
-            assert False
-        
-        time.sleep(2)
 
 
     
@@ -87,7 +90,7 @@ class PythonOrgSearch(unittest.TestCase):
         f.write("Search bar acceptance test \n")
         search_bar = ""
         try:
-            search_bar = self.driver.find_element_by_css_selector(Settings_Locators.Search_bar)
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.Search_bar)
             f.write("Search bar element found, proceeding with the test \n")
         except:
             f.write("Search bar element missing aborting test \n")
@@ -97,17 +100,18 @@ class PythonOrgSearch(unittest.TestCase):
         time.sleep(2)
 
         #if (search_bar.text == "change"):
-        f.write("Search bar accepted text correctly, Test passed \n")
+        f.write("Search bar accepted text correctly, Test passed\n")
         assert True
         #else:
             #f.write("Search bar did not accept text correctly, Test Failed \n")
             #assert False
     
+    
     def test_search_bar_search(self):
-        f.write("Search bar acceptance test \n")
+        f.write("Search bar search test \n")
         search_bar = ""
         try:
-            search_bar = self.driver.find_element_by_css_selector(Settings_Locators.Search_bar)
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.Search_bar)
             f.write("Search bar element found, proceeding with the test \n")
         except:
             f.write("Search bar element missing aborting test \n")
@@ -127,26 +131,8 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
     
-    def test_Settings_page_name(self):
-        f.write("\n\nPage Name test \n")
-        search_bar = ""
-        try:
-            search_bar = self.driver.find_element_by_css_selector(Settings_Locators.page_name)
-            f.write("Page Name element found, proceeding with the test \n")
-        except:
-            f.write("Page Name element missing aborting test \n")
-            assert False
-
-        if (search_bar.text == "Settings"):
-            f.write("Search Page Name correct, Test passed \n")
-            assert True
-        else:
-            f.write("Search Page not correct, Test Failed \n")
-            assert False
-     
-
     def test_Settings_YourAccount_button(self):
-        f.write("\n\nYour Account button test \n")
+        f.write("Your Account button test \n")
         search_bar = ""
 
         try:
@@ -157,6 +143,7 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
         search_bar.click()
+        f.write("Clicked on button \n")
 
         try:
             search_bar = self.driver.find_element_by_xpath(Settings_Locators.your_account_ident)
@@ -173,7 +160,7 @@ class PythonOrgSearch(unittest.TestCase):
             assert False 
 
     def test_Settings_TwitterBlue_button(self):
-        f.write("\n\nTwitterBlue button test \n")
+        f.write("TwitterBlue button test \n")
         search_bar = ""
 
         try:
@@ -184,23 +171,18 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
         search_bar.click()
+        f.write("Clicked on button \n")
 
         try:
-            search_bar = self.driver.find_element_by_xpath(Settings_Locators.Twitter_blue_ident)
-            f.write("TwitterBlue Header element found, proceeding with the test \n")
-        except:
-            f.write("TwitterBlue Header element missing aborting test \n")
-            assert False
-
-        if (search_bar.text == "Twitter Blue"):
-            f.write("Twitter Blue button worked getting us to its intended page, Test passed \n")
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.under_construct)
+            f.write("Under construction alert detected, Test passed \n")
             assert True
-        else:
-            f.write("We remained on same page, Test Failed \n")
+        except:
+            f.write("Under construction alert not detected, Test failed\n")
             assert False
 
     def test_Settings_SecurityandAccount_button(self):
-        f.write("\n\nSecurityandAccount button test \n")
+        f.write("SecurityandAccount button test \n")
         search_bar = ""
 
         try:
@@ -211,23 +193,18 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
         search_bar.click()
+        f.write("Clicked on button \n")
 
         try:
-            search_bar = self.driver.find_element_by_xpath(Settings_Locators.Security_and_Account_ident)
-            f.write("SecurityandAccount Header element found, proceeding with the test \n")
-        except:
-            f.write("SecurityandAccount Header element missing aborting test \n")
-            assert False
-
-        if (search_bar.text == "Security and account access"):
-            f.write("SecurityandAccount button worked getting us to its intended page, Test passed \n")
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.under_construct)
+            f.write("Under construction alert detected, Test passed \n")
             assert True
-        else:
-            f.write("SecurityandAccount on same page, Test Failed \n")
+        except:
+            f.write("Under construction alert not detected, Test failed\n")
             assert False
 
     def test_Settings_Privacyandsafety_button(self):
-        f.write("\n\nPrivacy and safety button test \n")
+        f.write("Privacy and safety button test \n")
         search_bar = ""
 
         try:
@@ -238,23 +215,18 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
         search_bar.click()
+        f.write("Clicked on button \n")
 
         try:
-            search_bar = self.driver.find_element_by_xpath(Settings_Locators.Privacy_and_safety_ident)
-            f.write("Privacy and safety Header element found, proceeding with the test \n")
-        except:
-            f.write("Privacy and safety Header element missing aborting test \n")
-            assert False
-
-        if (search_bar.text == "Privacy and safety"):
-            f.write("Privacy and safety button worked getting us to its intended page, Test passed \n")
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.under_construct)
+            f.write("Under construction alert detected, Test passed \n")
             assert True
-        else:
-            f.write("We remained on same page, Test Failed \n")
+        except:
+            f.write("Under construction alert not detected, Test failed\n")
             assert False
 
     def test_Settings_Notifications_button(self):
-        f.write("\n\nNotifications button test \n")
+        f.write("Notifications button test \n")
         search_bar = ""
 
         try:
@@ -265,23 +237,18 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
         search_bar.click()
+        f.write("Clicked on button \n")
 
         try:
-            search_bar = self.driver.find_element_by_xpath(Settings_Locators.notifications_ident)
-            f.write("Notifications Header element found, proceeding with the test \n")
-        except:
-            f.write("Notifications Header element missing aborting test \n")
-            assert False
-
-        if (search_bar.text == "Notifications"):
-            f.write("Notifications button worked getting us to its intended page, Test passed \n")
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.under_construct)
+            f.write("Under construction alert detected, Test passed \n")
             assert True
-        else:
-            f.write("We remained on same page, Test Failed \n")
+        except:
+            f.write("Under construction alert not detected, Test failed\n")
             assert False
 
     def test_Settings_Access_button(self):
-        f.write("\n\nAccessibility, display and languages button test \n")
+        f.write("Accessibility, display and languages button test \n")
         search_bar = ""
 
         try:
@@ -292,23 +259,18 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
         search_bar.click()
+        f.write("Clicked on button \n")
 
         try:
-            search_bar = self.driver.find_element_by_xpath(Settings_Locators.accessbility_ident)
-            f.write("Accessibility, display and languages Header element found, proceeding with the test \n")
-        except:
-            f.write("Accessibility, display and languages Header element missing aborting test \n")
-            assert False
-
-        if (search_bar.text == "Accessibility, display and languages"):
-            f.write("Accessibility, display and languages button worked getting us to its intended page, Test passed \n")
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.under_construct)
+            f.write("Under construction alert detected, Test passed \n")
             assert True
-        else:
-            f.write("We remained on same page, Test Failed \n")
+        except:
+            f.write("Under construction alert not detected, Test failed\n")
             assert False
-
+    
     def test_Settings_add_button(self):
-        f.write("\n\nAdditional resources button test \n")
+        f.write("Additional resources button test \n")
         search_bar = ""
 
         try:
@@ -319,21 +281,16 @@ class PythonOrgSearch(unittest.TestCase):
             assert False
 
         search_bar.click()
+        f.write("Clicked on button \n")
 
         try:
-            search_bar = self.driver.find_element_by_xpath(Settings_Locators.resources_ident)
-            f.write("Additional resources Header element found, proceeding with the test \n")
-        except:
-            f.write("Additional resources Header element missing aborting test \n")
-            assert False
-
-        if (search_bar.text == "Additional resources"):
-            f.write("Additional resources button worked getting us to its intended page, Test passed \n")
+            search_bar = self.driver.find_element_by_xpath(Settings_Locators.under_construct)
+            f.write("Under construction alert detected, Test passed \n")
             assert True
-        else:
-            f.write("We remained on same page, Test Failed \n")
-            assert False    
-
+        except:
+            f.write("Under construction alert not detected, Test failed\n")
+            assert False  
+    
     def tearDown(self):
         self.driver.close()    
 
