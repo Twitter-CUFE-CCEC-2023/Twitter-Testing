@@ -8,7 +8,7 @@ Notification -> test on click  the notication
 PASSED  
 
 Notification -> number of the notification   
-FALIED : the notictation didnt clear after i saw it  
+FALIED : the notictation number didnt clear after i saw it  
 
 Notification -> testing the noficiation icon   
 PASSED  

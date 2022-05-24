@@ -88,8 +88,8 @@ profile PAGE -> testing unfollow button from followeing
 PASSED    
 
 profile PAGE -> testing unfollow button from follower  
-FALIED :  counting wrong   
+FAILED :  counting wrong   
 
 profile PAGE -> testing unfollow msg that confirm the unfollow  
-FALIED :  the msg is not found   
+FAILED :  the msg is not found   
 
