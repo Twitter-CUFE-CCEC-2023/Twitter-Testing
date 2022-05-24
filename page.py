@@ -463,10 +463,14 @@ class profile(BasePage):
         element.send_keys(tweet)
     
     def click_on_tweet_button(self):
-        element = WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.XPATH,profilelocators.TWEET_BUTTON))
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.TWEET_BUTTON))
                     )
-        element.click()
+            element.click()
+            return True
+        except:
+            return False
     
     def click_on_my_pic_in_tweet(self):
         element = WebDriverWait(self.driver, 10).until(
@@ -516,13 +520,382 @@ class profile(BasePage):
                 return False 
         except:
             return False    
-        
+    
+    def is_tweet_enable(self):
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.TWEET_BUTTON))
+                    )
+            print("the button",element.is_enabled())
+            return element.is_enabled()    
             
-        
+    def click_GIF(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.GIF_ICON))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def select_GIF_1(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.GIF1))
+                    )
             
+            element.click()
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.GIF_1_4))
+                    )
             
+            element.click()
+            return True
+        except:
+            return False    
+    
+    def search_GIF(self,tweet):
+            element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.SEARCH_GIF))
+                    )
+            element.send_keys(tweet)
+                    
+    def click_pic(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.PHOTO_ICON))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def check_username(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.USERNAME))
+                    )
             
-        
+            return element.text
+        except:
+            return False            
+    
+    def check_name(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.NAME))
+                    )
+            
+            return element.text
+        except:
+            return False        
+            
+    def click_on_reply_icon(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators. REPLEY_ICON))
+                    )
+            element.click()
+            return True
+        except:
+            return False    
 
-                
-                
+    def send_repley(self,REPLEY):
+            element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.REPLEY_BODY))
+                    )
+            element.send_keys(REPLEY) 
+            return True           
+    def click_on_reply_button(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLEY_BUTTON))
+                    )
+            element.click()
+            return True
+        except:
+            return False 
+    def is_reply_button_enable(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLEY_BUTTON))
+                    )
+           
+            return element.is_enabled()
+        except:
+            return False 
+        
+    def cheack_ur_reply_size(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLEY_BODY))
+                    )
+            check=0
+            check=len(element.get_attribute("value"))
+            print(check)
+            if check>280:
+                return True
+            else:
+                return False 
+        except:
+            return False                  
+    def click_on_x_reply_button(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.X_REPLY_BUTTON))
+                    )
+            element.click()
+            return True
+        except:
+            return False    
+    
+    def click_on_discard_msg_reply(self):
+        try:
+            element = WebDriverWait(self.driver, 3).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.DISCARD_REPLEY_MSG))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_on_GIF_reply(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.GIF_REPLY))
+                    )
+            element.click()
+            return True
+        except:
+            return False 
+    def click_on_tweet_tab(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.TWEETS_TAB))
+                    )
+            element.click()
+            return True
+        except:
+            return False           
+    def click_on_tweet_and_replies_tab(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.TWEETS_AND_RPLEY_TAB))
+                    )
+            element.click()
+            return True
+        except:
+            return False 
+    def click_on_media_tab(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.MEDIA_TAB))
+                    )
+            element.click()
+            return True
+        except:
+            return False        
+    def click_on_like_tab(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.LIKE_TAB))
+                    )
+            element.click()
+            return True
+        except:
+            return False    
+    
+    def who_reply(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLY_WHO))
+                    )
+            
+            return element.text
+        except:
+            return False
+        
+         
+    def text_body_1(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.FIRST_TWEET))
+                    )
+            print(element.text)
+            return element.text
+        except:
+            return False       
+    def text_body_2(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.SECOND_TWEET))
+                    )
+            print(element.text)
+            return element.text
+        except:
+            return False    
+    def click_on_like(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.LIKE_ICON))
+                    )
+            element.click()
+            return True
+        except:
+            return False 
+    def click_option(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.OPTION))
+                    )
+            element.click()
+            return True
+        except:
+            return False       
+    def click_delete(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.DELETE))
+                    )
+            element.click()
+            return True
+        except:
+            return False    
+    def click_delete_button(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.DELETE_BUTTON))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_on_retweet(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.RETWEET_ICON))
+                    )
+            element.click()
+            return True
+        except:
+            return False        
+    def WHO_retweet(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.RETWEET_WHO))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_on_the_tweet(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.FIRST_TWEET))
+                    )
+            element.click()
+            return True
+        except:
+            return False  
+    def click_on_the_tweet_REPLY_LIKE(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLY_LIKE_BUTTON))
+                    )
+            element.click()
+            return True
+        except:
+            return False            
+        
+    def get_likes(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLY_LIKE))
+                    )
+            print("NUMBER OF LIKES ",element.text)
+            return element.text
+        except:
+            return False    
+    def send_reple_click(self,REPLY):
+            element = WebDriverWait(self.driver, 10).until(
+        EC.presence_of_element_located((By.XPATH,profilelocators.REPLY_BODY_CLICK))
+                    )
+            element.send_keys(REPLY) 
+            return True
+    def is_reply_button_enable_click(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLY_BODY_BUTTON_CLICK))
+                    )
+           
+            return element.is_enabled()
+        except:
+            return False 
+        
+    def cheack_ur_reply_size_click(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLY_BODY_CLICK))
+                    )
+            check=0
+            check=len(element.get_attribute("value"))
+            print(check)
+            if check>280:
+                return True
+            else:
+                return False 
+        except:
+            return False         
+    def click_on_the_tweet_REPLY_button_inside(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.REPLY_BODY_BUTTON_CLICK))
+                    )
+            element.click()
+            return True
+        except:
+            return False 
+class notfi(BasePage):
+    def click_nofi_icon(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,Notificationslocator.NOTFI_ICON))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_all_button(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,Notificationslocator.ALL_BUTTON))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_men_button(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,Notificationslocator.MENTION_BUTTON))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_body_of_notfi(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,Notificationslocator.BODY_NOTFI))
+                    )
+            element.click()
+            return True
+        except:
+            return False  
+    def get_notfi(self):
+        try:
+            print("jaja")
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,Notificationslocator.NUMBER))
+                    )
+            print("NUMBER OF notification ",element.text)
+            return element.text
+        except:
+            return False                           

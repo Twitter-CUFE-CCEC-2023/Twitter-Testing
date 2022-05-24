@@ -8,6 +8,11 @@ class StartingPageLocators(object):
     USERNAME="ellethykhaled2@gmail.com"
     PASSWORD="kokokaka99"
     USERNAME_1="ellethykhaled"
+    NAME="Lethy"
+    TWEET_1="the king  IS HERE"
+    REPLEY="I AM REPLEYING"
+    TWEET_1_SPECIAL="SPECIAL TWEET"
+    LIKE_TWEET="TEST LIKE"
     
 class SignInLocators(object):
     INSERT_UR_INFO = "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/input[1]"
@@ -64,6 +69,16 @@ class Passwordlocarors(object):
     FORGET_PASSWORD = "//span[contains(text(),'Forgot password?')]" #XPATH
     LOGIN_BUTTON = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]"
     FORGET_PASSWORD_TEXT = "Forgot password?"
+    
+class Notificationslocator(object):
+    NOTFI_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[4]/a[1]/div[1]"
+    
+    ALL_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]"
+    MENTION_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/a[1]"
+    BODY_NOTFI="/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]"
+    NUMBER="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[4]/div[1]"
+    
+         
 
 class profilelocators(object):
     TWETA="be carefull i am testing"
@@ -81,11 +96,35 @@ class profilelocators(object):
     FOLLOW_BUG=  "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[4]/div[1]/button[1]"
     MY_PIC_IN_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[3]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]"
     TWEETX280="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    
-    
-    
-    
-      
+    GIF_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[3]/div[2]/div[1]/div[2]/button[1]/div[1]/*[name()='svg'][1]"
+    SEARCH_GIF="/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/form[1]/input[1]"
+    GIF1="/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/img[1]"
+    GIF_1_4="/html[1]/body[1]/div[2]/div[1]/div[2]/img[5]"
+    GIF2="/html[1]/body[1]/div[2]/div[1]/div[2]/div[3]/img[1]"
+    PHOTO_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[10]/div[3]/div[2]/div[1]/div[2]/div[1]/button[1]/div[1]/*[name()='svg'][1]"
+    USERNAME="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[5]/div[1]/p[1]"
+    NAME="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[3]/div[2]"
+    REPLEY_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[3]/div[3]/div[1]/div[1]/div[1]/*[name()='svg'][1]"
+    REPLEY_BODY="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[3]/div[1]/form[1]/div[1]/textarea[1]"
+    REPLEY_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[3]/div[2]/button[6]"
+    X_REPLY_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/img[1]"
+    DISCARD_REPLEY_MSG=""
+    GIF_REPLY="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[3]/div[2]/button[1]/div[1]/*[name()='svg'][1]"
+    TWEETS_TAB          ="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[6]/a[1]/div[1]/p[1]"
+    TWEETS_AND_RPLEY_TAB="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[6]/a[2]/div[1]/p[1]"
+    MEDIA_TAB="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[6]/a[3]/div[1]/p[1]"
+    LIKE_TAB="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[6]/a[4]/div[1]/p[1]"
+    REPLY_WHO=""
+    RETWEET_WHO=""
+    LIKE_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[3]/div[3]/div[5]/div[1]/div[1]/*[name()='svg'][1]"
+    OPTION="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[3]/div[1]/div[1]/*[name()='svg'][1]"
+    DELETE="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]"
+    DELETE_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[3]/div[1]/div[3]/div[1]/div[1]/div[2]"
+    RETWEET_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[2]/div[1]/div[1]/div[3]/div[3]/div[3]/div[1]/div[1]/*[name()='svg'][1]"
+    REPLY_LIKE="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[3]/div[4]/div[1]/p[3]/span[1]"
+    REPLY_LIKE_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[3]/div[4]/div[2]/div[2]/*[name()='svg'][1]"
+    REPLY_BODY_CLICK="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/form[1]/div[1]/textarea[1]"
+    REPLY_BODY_BUTTON_CLICK="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[2]/button[6]"                 
 class Settings_Locators(object):
     page_name = 'h2[class="SettingsSection_settings-section-header__uXJhj"]'
     Search_bar = 'input[placeholder="Search settings"]'

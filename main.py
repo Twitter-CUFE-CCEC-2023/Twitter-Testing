@@ -1,5 +1,7 @@
+from email.quoprimime import body_check
 from faulthandler import is_enabled
 from lib2to3.pgen2 import driver
+from pickle import TRUE
 from sqlite3 import Time
 import unittest
 from selenium import webdriver
@@ -21,11 +23,13 @@ HOME_PAGE="http://www.twittercloneteamone.tk/home"
 Report_signIn = open("sign_in.txt", "a")
 Report_signUp = open("sign_up.txt", "a")
 Report_profile = open("Profile.txt", "a")
+Report_notfi = open("Notifications.txt","a")
 class PythonOrgSearch(unittest.TestCase):
     
     def setUp(self):
         self.driver = webdriver.Chrome(PATH)
         self.driver.get(STARTUP_PAGE)
+        
         
 
    
@@ -562,7 +566,7 @@ class PythonOrgSearch(unittest.TestCase):
         except:
             pass    
                
-    '''    
+       
     def test_case_discard_msg(self):
         global testcases
         global passed
@@ -598,7 +602,1044 @@ class PythonOrgSearch(unittest.TestCase):
             
         except:
             Report_profile.write("FALIED : there is no discard msg  \n\n" )
+     
     
+    
+    def test_case_teweet_button_gif(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE ->Testing GIF   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            profile.click_GIF()
+            time.sleep(2)
+            profile.select_GIF_1()
+            if profile.click_on_tweet_button():
+                Report_profile.write("PASSED :  \n\n" )
+                
+            else:
+                Report_profile.write("FALIED :  \n\n" )   
+    
+        except:
+            Report_profile.write("FALIED :  \n\n" )
+            
+        
+           
+        
+    def test_case_post_pic(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE ->Testing  pic   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            if profile.click_pic() :
+                Report_profile.write("PASSED  \n\n" )
+            else:
+                Report_profile.write("FALIED : pic is not working   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED : seach is not working   \n\n" ) 
+    
+    
+    
+    def test_case_check_name(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> name   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            print(profile.check_name)
+            if not profile.check_name==StartingPageLocators.NAME:
+                Report_profile.write("PASSED  \n\n" )
+            else:
+                Report_profile.write("FALIED : its not right name   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+                                            
+    
+    def test_case_PROFILE_reply_acceptX280(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> accept more than 280   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_reply_icon()
+            time.sleep(1)
+            profile.send_repley(profilelocators.TWEETX280)
+            
+            if profile.cheack_ur_reply_size:
+                Report_profile.write("PASSED  \n\n" )
+            else:
+                Report_profile.write("FALIED : not accept more than 280    \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+    
+    
+    
+    def test_case_PROFILE_reply_enable(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> Enbale reply button   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_reply_icon()
+            time.sleep(1)
+            profile.send_repley(profilelocators.TWEETX280)
+            print(profile.is_reply_button_enable)
+            if not profile.is_reply_button_enable:
+                Report_profile.write("FALIED : its enable with wrong info    \n\n" )
+            else:
+                Report_profile.write("PASSED  \n\n" )
+                
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+    
+    def test_case_PROFILE_dicard_msg(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> discard msg   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_reply_icon()
+            time.sleep(1)
+            profile.send_repley(profilelocators.TWEETX280)
+            profile.click_on_x_reply_button()
+            
+            if profile.click_on_discard_msg_reply:
+                Report_profile.write("FALIED : dicard msg not found    \n\n" )
+            else:
+                Report_profile.write("PASSED  \n\n" )
+                
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+    
+    def test_case_PROFILE_reply(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on reply   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_reply_icon()
+            time.sleep(1)
+            profile.send_repley("i am testing on u take care")
+            
+            
+            if profile.click_on_reply_button():
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FAILED: reply isnot working  \n\n" )
+                
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+    
+    def test_case_PROFILE_replyby_GIF(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on reply by Gif   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_reply_icon()
+            time.sleep(1)
+            profile.send_repley("i am testing on u take care")
+
+            time.sleep(3)
+            
+            
+            if profile.click_on_GIF_reply():
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FAILED: reply by Gif is not working  \n\n" )
+                
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+    
+    
+    def test_case_PROFILE_reply_postion_in_tweet_tab(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on repley appers in tweet tab  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_reply_icon()
+            time.sleep(1)
+            profile.send_repley("i am testing on u take care")
+            profile.click_on_reply_button()
+            time.sleep(3)
+            #refresh
+            profile.click_profile_icon()
+            time.sleep(2)
+            profile.click_home_icon()
+            time.sleep(2)
+            profile.click_profile_icon()
+            # finish refresh
+            
+            time.sleep(10)
+            if profile.text_body_1()=="i am testing on u take care":
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FAILED:the  reply is not apper in tweets tab \n\n" )
+                
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+    
+    def test_case_PROFILE_reply_postion_in_tweet_and_replies_tab(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on repley appers in tweet & replies tab  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_tweet_icon()
+            profile.tweet(StartingPageLocators.TWEET_1)
+            profile.click_on_tweet_button()
+            time.sleep(7)
+            #refresh
+            profile.click_profile_icon()
+            time.sleep(2)
+            profile.click_home_icon()
+            time.sleep(2)
+            profile.click_profile_icon()
+            # finish refresh
+            profile.click_on_reply_icon()
+            time.sleep(1)
+            profile.send_repley("i am testing on u take care")
+            profile.click_on_reply_button()
+            time.sleep(3)
+            #refresh
+            profile.click_profile_icon()
+            time.sleep(2)
+            profile.click_home_icon()
+            time.sleep(2)
+            profile.click_profile_icon()
+            # finish refresh
+            
+            profile.click_on_tweet_and_replies_tab()
+            time.sleep(10)
+            if profile.text_body_1()==StartingPageLocators.TWEET_1 and profile.text_body_2()=="i am testing on u take care":
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FAILED:the  reply is not working the replied tweet is not appering \n\n" )
+                
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+      
+    def test_case_PROFILE_check_duplicate_tweet(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on cheack duplicate  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_tweet_icon()
+            profile.tweet(StartingPageLocators.TWEET_1_SPECIAL)
+            profile.click_on_tweet_button()
+            time.sleep(7)
+            #refresh
+            profile.click_profile_icon()
+            time.sleep(2)
+            profile.click_home_icon()
+            time.sleep(2)
+            profile.click_profile_icon()
+            # finish refresh  
+            time.sleep(7)
+            if profile.text_body_1()==profile.text_body_2():
+               Report_profile.write("FALIED : Duplicate detected   \n\n" ) 
+            else:
+                Report_profile.write("PASSED    \n\n" ) 
+            
+            
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+    
+    def test_case_PROFILE_like(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on like  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_tweet_icon()
+            profile.tweet(StartingPageLocators.LIKE_TWEET)
+            profile.click_on_tweet_button()
+            time.sleep(7)
+            #refresh
+            profile.click_profile_icon()
+            time.sleep(2)
+            profile.click_home_icon()
+            time.sleep(2)
+            profile.click_profile_icon()
+            # finish refresh 
+            time.sleep(7)
+            profile.click_on_like()
+            #refresh
+            profile.click_on_media_tab()
+            time.sleep(2)
+            profile.click_on_tweet_tab()
+            time.sleep(5)
+            # finish refresh 
+            profile.click_on_like_tab() 
+            time.sleep(15)
+            
+            if profile.text_body_1()==StartingPageLocators.LIKE_TWEET:
+               Report_profile.write("PASSED   \n\n" ) 
+            else:
+                Report_profile.write("FALID : liked tweet not found    \n\n" ) 
+           
+            
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+     
+    def test_case_PROFILE_Unlike(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on unlike  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            profile.click_on_like_tab()
+            temp=profile.text_body_1()
+            profile.click_on_like()
+            profile.click_on_media_tab()
+            time.sleep(2)
+            profile.click_on_tweet_tab()
+            time.sleep(5)
+            profile.click_on_like_tab()
+            if  temp==profile.text_body_1():
+               Report_profile.write("FALID : unliked tweet found   \n\n" ) 
+            else:
+                Report_profile.write("PASSED    \n\n" ) 
+           
+            
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+    
+    
+    
+    def test_case_REtweet_(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on retweet  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_retweet()
+            if profile.WHO_retweet():
+                Report_profile.write("PASSED :    \n\n" )
+            else:
+                Report_profile.write("FAILED :not mention who retweet the tweet  \n\n" )    
+                
+            
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+            
+    
+    def test_case_PROFILE_click_tweet(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> click on the tweet  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(9)
+            #finishing login
+            if profile.click_on_the_tweet():
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FAILED   \n\n" )   
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+                
+    
+    
+    
+    def test_case_PROFILE_enable_of_repley_inside(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> click on the tweet then check enable of reply button   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(9)
+            #finishing login
+            
+            profile.click_on_the_tweet()
+            time.sleep(9)
+            if profile.is_reply_button_enable_click():
+                Report_profile.write("FALIED : enable without info   \n\n" ) 
+            else:
+                Report_profile.write("PASSED   \n\n" )    
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+        
+    def test_case_PROFILE_click_tweet_cheack_280(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> click on the tweet then check if it accept more tan 280   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(9)
+            #finishing login
+            
+            profile.click_on_the_tweet()
+            time.sleep(9)
+            profile.send_reple_click(profilelocators.TWEETX280)
+            
+            if profile.cheack_ur_reply_size_click():
+                Report_profile.write("PASSED  \n\n" ) 
+            else:
+                Report_profile.write("FAILED: didnt accept more than 280 char   \n\n" )    
+        except:
+            Report_profile.write("FALIED :    \n\n" ) 
+        
+        
+     
+    def test_case_PROFILE_click_tweet_cheack_reply(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> click on the tweet then reply   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(9)
+            #finishing login
+            
+            profile.click_on_the_tweet()
+            time.sleep(9)
+            profile.send_reple_click("nice to meet u")
+            
+            if profile.click_on_the_tweet_REPLY_button_inside():
+                Report_profile.write("PASSED  \n\n" ) 
+            else:
+                Report_profile.write("FAILED: didnt work   \n\n" )    
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+    
+    def test_case_check_username(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> username   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login 
+            print(profile.check_username)
+            if profile.check_username==StartingPageLocators.USERNAME_1:
+                Report_profile.write("PASSED  \n\n" )
+            else:
+                Report_profile.write("FALIED : its not right username   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )           
+    
+    def test_case_teweet_search_bar_in_gif(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE ->Testing GIF search bar   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            profile.click_GIF()
+            profile.search_GIF()
+            if profile.select_GIF_1():
+                Report_profile.write("PASSED :  \n\n" )
+            else:
+                Report_profile.write("FALIED : seach is not working  \n\n" )
+                    
+                
+            
+        except:
+            Report_profile.write("FALIED : search is not working   \n\n" )   
+     
+    def test_case_delete_tweet_1(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing on delete the tweet  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_option()
+            time.sleep(2)
+            profile.click_delete()
+            time.sleep(2)
+            if profile.click_delete_button():
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FALIED :     \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+            
+    def test_case_PROFILE_click_tweet_like_button(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> click on the tweet then click like & retweet  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(9)
+            #finishing login
+            
+            profile.click_on_the_tweet()
+            time.sleep(9)
+            temp=profile.get_likes()
+            time.sleep(2)
+            print(profile.click_on_the_tweet_REPLY_LIKE())
+            
+            if not temp==profile.get_likes():
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FAILED: not working   \n\n" )   
+        except:
+            Report_profile.write("FALIED :    \n\n" )  
+            
+    
+    def test_case_teweet_button_enable(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE ->tweet button  enable   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_on_tweet_icon()
+            
+            if profile.is_tweet_enable():
+                Report_profile.write("FALIED : the button is enable withot tweet  \n\n" ) 
+            else:
+                 Report_profile.write("PASSED  \n\n" )   
+                
+        except:
+            Report_profile.write("FALIED :  \n\n" )  
+     
+    
+    def test_case_notfi_icon(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_notfi.write("Notification -> testing the noficiation icon   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            notfi=page.notfi(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            if notfi.click_nofi_icon():
+                Report_notfi.write("PASSED  \n\n" )
+            else:
+                Report_notfi.write("FALIED : the button is not working  \n\n" )
+                    
+                
+            
+        except:
+            Report_notfi.write("FALIED :  \n\n" )
+           
+    def test_case_all_button(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_notfi.write("Notification -> testing the all button   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            notfi=page.notfi(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            notfi.click_nofi_icon()
+            time.sleep(6)
+            if notfi.click_all_button():
+                Report_notfi.write("PASSED  \n\n" )
+            else:
+                Report_notfi.write("FALIED : the button is not working  \n\n" )
+                    
+                
+            
+        except:
+            Report_notfi.write("FALIED :  \n\n" )            
+     
+    
+    def test_case_mention_button(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_notfi.write("Notification -> testing the mention button   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            notfi=page.notfi(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            notfi.click_nofi_icon()
+            time.sleep(6)
+            if notfi.click_men_button():
+                Report_notfi.write("PASSED  \n\n" )
+            else:
+                Report_notfi.write("FALIED : the button is not working  \n\n" )
+                    
+                
+            
+        except:
+            Report_notfi.write("FALIED :  \n\n" )  
+    
+    def test_case_noitifiaction_number(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_notfi.write("Notification -> number of the notification   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            notfi=page.notfi(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            notfi.click_nofi_icon()
+            time.sleep(15)
+            if  not notfi.get_notfi():
+                Report_notfi.write("PASSED  \n\n" )
+            else:
+                Report_notfi.write("FALIED : the notictation didnt clear after i saw it  \n\n" )
+                    
+                
+            
+        except:
+            Report_notfi.write("FALIED :  \n\n" ) 
+    '''
+                                                                                                                                                                                     
     def log_in(self):
         Signin_page=page.SignInPage(self.driver)
         profile=page.profile(self.driver)
@@ -612,6 +1653,9 @@ class PythonOrgSearch(unittest.TestCase):
         time.sleep(5)   
         profile.click_profile_icon()
         time.sleep(2)
+        
+    
+    
     
     def refresh(self):
         profile=page.profile(self.driver)  
@@ -625,6 +1669,9 @@ class PythonOrgSearch(unittest.TestCase):
     def tearDown(self):
         time.sleep(2)
         self.driver.close()
+        # Report_profile.close()
+        # Report_signUp.close()
+        # Report_signIn.close()
         
         
         
