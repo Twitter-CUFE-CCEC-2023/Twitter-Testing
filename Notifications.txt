@@ -1,19 +1,15 @@
-
-Notification -> number of the notification   
+Notification -> testing the all button   
 PASSED  
 
-Notification -> number of the notification   
+Notification -> testing the mention button   
 PASSED  
 
-Notification -> number of the notification   
-FALIED :  
-
-Notification -> number of the notification   
-PASSED  
-
-Notification -> number of the notification   
+Notification -> test on click  the notication   
 PASSED  
 
 Notification -> number of the notification   
 FALIED : the notictation didnt clear after i saw it  
+
+Notification -> testing the noficiation icon   
+PASSED  
 

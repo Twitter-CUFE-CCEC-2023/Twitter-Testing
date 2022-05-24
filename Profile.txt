@@ -77,3 +77,19 @@ PASSED
 profile PAGE ->tweet button  enable   
 PASSED  
 
+
+profile PAGE -> testing follower text link  
+PASSED    
+
+profile PAGE -> testing following text link  
+PASSED    
+  
+profile PAGE -> testing unfollow button from followeing  
+PASSED    
+
+profile PAGE -> testing unfollow button from follower  
+FALIED :  counting wrong   
+
+profile PAGE -> testing unfollow msg that confirm the unfollow  
+FALIED :  the msg is not found   
+

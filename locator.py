@@ -83,6 +83,7 @@ class Notificationslocator(object):
 class profilelocators(object):
     TWETA="be carefull i am testing"
     PEOFILE_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[8]/a[1]/div[1]/*[name()='svg'][1]/*[name()='path'][1]"
+    PROFILE_ICON_2= "/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[8]/a[1]/div[1]/*[name()='svg'][1]/*[name()='path'][1]"
     HOME_ICON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[2]/a[1]/div[1]"
     BODY_OF_THE_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[3]/div[2]"
     FIRST_TWEET="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[7]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]"
@@ -124,7 +125,15 @@ class profilelocators(object):
     REPLY_LIKE="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[3]/div[4]/div[1]/p[3]/span[1]"
     REPLY_LIKE_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[3]/div[4]/div[2]/div[2]/*[name()='svg'][1]"
     REPLY_BODY_CLICK="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/form[1]/div[1]/textarea[1]"
-    REPLY_BODY_BUTTON_CLICK="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[2]/button[6]"                 
+    REPLY_BODY_BUTTON_CLICK="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[2]/button[6]"
+    FOLLOWERS="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[5]/div[4]/a[2]"
+    FOLLOWERS_NUMBER="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[5]/div[4]/a[2]/span[1]"
+    FOLLOWING="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[5]/div[4]/a[1]"
+    FOLLOWING_NUMBER="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[5]/div[4]/a[1]/span[1]"
+    UNFOLLOW_BUTTON="/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[4]/button[1]"
+    UNFOLLOW_MSG=""
+    
+                     
 class Settings_Locators(object):
     page_name = 'h2[class="SettingsSection_settings-section-header__uXJhj"]'
     Search_bar = 'input[placeholder="Search settings"]'

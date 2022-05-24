@@ -1499,7 +1499,7 @@ class PythonOrgSearch(unittest.TestCase):
         except:
             Report_profile.write("FALIED :  \n\n" )  
      
-    
+     
     def test_case_notfi_icon(self):
         global testcases
         global passed
@@ -1638,8 +1638,227 @@ class PythonOrgSearch(unittest.TestCase):
             
         except:
             Report_notfi.write("FALIED :  \n\n" ) 
-    '''
-                                                                                                                                                                                     
+    
+    def test_case_noitifiaction_body(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_notfi.write("Notification -> test on click  the notication   \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            notfi=page.notfi(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            notfi.click_nofi_icon()
+            time.sleep(15)
+            if  notfi.click_body_of_notfi():
+                Report_notfi.write("PASSED  \n\n" )
+            else:
+                Report_notfi.write("FALIED : the notictation is not found \n\n" )
+                    
+                
+            
+        except:
+            Report_notfi.write("FALIED :  \n\n" ) 
+             
+            
+    def test_case_PROFILE_click_follower(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing follower text link  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            
+            if profile.click_follower():
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FALIED :  not working   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )  
+           
+    def test_case_PROFILE_click_following(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing following text link  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            
+            if profile.click_following():
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FALIED :  not working   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+    
+    def test_case_PROFILE_click_following_change_number(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing unfollow button from followeing  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            temp=profile.get_follwing_number()
+            print(profile.get_follwing_number())
+            profile.click_following()
+            time.sleep(10)
+            profile.click_UNfollow()
+            time.sleep(4)
+            profile.click_PROFILE()
+            time.sleep(10)
+            
+            if not profile.get_follwing_number()==temp :
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FALIED :  counting wrong   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )
+    
+    def test_case_PROFILE_click_followER_change_number(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing unfollow button from follower  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            temp=profile.get_follwer_number()
+            profile.click_follower()
+            time.sleep(10)
+            profile.click_UNfollow()
+            time.sleep(4)
+            profile.click_PROFILE()
+            time.sleep(10)
+            
+            if not profile.get_follwer_number()==temp :
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FALIED :  counting wrong   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )    
+    
+    def test_case_PROFILE_click_following_change_number(self):
+        global testcases
+        global passed
+        global failed
+        testcases+=1
+        Report_profile.write("profile PAGE -> testing unfollow msg that confirm the unfollow  \n" )
+        time.sleep(5)
+        try: 
+        #profile=page.profile(self.driver)
+        #log in
+            Signin_page=page.SignInPage(self.driver)
+            profile=page.profile(self.driver)
+            Signin_page.click_sign_in_button()
+            Signin_page.insert_your_info(StartingPageLocators.USERNAME)
+            time.sleep(2)
+            Signin_page.click_Next_button()
+            Signin_page.insert_your_password(StartingPageLocators.PASSWORD)
+            time.sleep(2)
+            Signin_page.click_login()
+            time.sleep(5)   
+            profile.click_profile_icon()
+            time.sleep(2)
+            #finishing login
+            profile.click_following()
+            time.sleep(10)
+            profile.click_UNfollow()
+            time.sleep(4)
+            
+            if profile.click_UNfollow_MSG() :
+                Report_profile.write("PASSED    \n\n" )
+            else:
+                Report_profile.write("FALIED :  the msg is not found   \n\n" )
+                    
+                
+        except:
+            Report_profile.write("FALIED :    \n\n" )    
+    '''                                                                                                                                                                                                          
     def log_in(self):
         Signin_page=page.SignInPage(self.driver)
         profile=page.profile(self.driver)

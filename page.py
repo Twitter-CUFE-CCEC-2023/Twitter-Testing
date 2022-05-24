@@ -851,7 +851,72 @@ class profile(BasePage):
             element.click()
             return True
         except:
+            return False
+    def click_follower(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.FOLLOWERS))
+                    )
+            element.click()
+            return True
+        except:
+            return False  
+    def click_following(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.FOLLOWING))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_UNfollow(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.UNFOLLOW_BUTTON))
+                    )
+            element.click()
+            return True
+        except:
+            return False
+    def click_UNfollow_MSG(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.UNFOLLOW_MSG))
+                    )
+            element.click()
+            return True
+        except:
             return False 
+    def click_PROFILE(self):
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.PROFILE_ICON_2))
+                    )
+            element.click()
+            return True
+        except:
+            return False                      
+    def get_follwer_number(self):
+        try:
+            print("jaja")
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.FOLLOWERS_NUMBER))
+                    )
+            print("NUMBER OF follower ",element.text)
+            return element.text
+        except:
+            return False
+    def get_follwing_number(self):
+        try:
+            print("jaja")
+            element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,profilelocators.FOLLOWING_NUMBER))
+                    )
+            print("NUMBER OF following ",element.text)
+            return element.text
+        except:
+            return False         
 class notfi(BasePage):
     def click_nofi_icon(self):
         try:
